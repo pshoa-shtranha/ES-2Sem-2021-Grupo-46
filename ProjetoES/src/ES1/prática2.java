@@ -1,6 +1,6 @@
 package ES1;
 
-public class pr·tica2 {
+public class pr√°tica2 {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
