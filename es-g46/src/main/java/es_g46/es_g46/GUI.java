@@ -13,8 +13,12 @@ import javax.swing.*;
 
 public class GUI {
 	
-	public static  JFrame frame;
-	private  JTextField text;
+	private JFrame frame;
+	private JButton button;
+	private JButton button1;
+	private String text;
+	private JPanel topPanel;
+	private JPanel bottomPanel;
 
 
 	public GUI() {
@@ -29,7 +33,7 @@ public class GUI {
 		frame.setSize(1000, 500);
 		frame.setVisible(true);
 	}
-	
+/*	
 	public void createExcel() {
 		try {
             String filename = "C:/Code_Smells.xls" ;
@@ -54,18 +58,55 @@ public class GUI {
         }
     }
 	
+	*/
 	
-	private void addFrameContent() {
-		frame.setLayout(new BorderLayout());
+	private void upPanel() {
 		
-		JButton button = new JButton("Open Excel"); 
+		button = new JButton("Open Excel"); 
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//colocar ação do botão
-				createExcel();
+				//createExcel();
 			}
 		});
 		frame.add(button, BorderLayout.SOUTH);
+		
+		button1 = new JButton("Open Excellll"); 
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//colocar ação do botão
+				//createExcel();
+			}
+		});
+		
+		topPanel = new JPanel();
+		frame.add(topPanel, BorderLayout.SOUTH);
+		topPanel.setLayout(new FlowLayout());
+		topPanel.add(button);
+		topPanel.add(button1);
+	}
+	
+/*	private void lowPanel() {
+		
+		button = new JButton("Open Excel"); 
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//colocar ação do botão
+			}
+		});
+		frame.add(button, BorderLayout.SOUTH);
+		
+		bottomPanel = new JPanel();
+		frame.add(bottomPanel, BorderLayout.NORTH);
+		bottomPanel.setLayout(new FlowLayout());
+		topPanel.add(button);
+	}
+*/	
+	
+	private void addFrameContent() {
+		frame.setLayout(new BorderLayout());
+		upPanel();
+//		lowPanel();
 	}
 	
 	
