@@ -4,10 +4,7 @@ eclipse.preferences.version=1
 org.eclipse.jdt.internal.ui.navigator.layout=2
 org.eclipse.jdt.internal.ui.navigator.librariesnode=true
 org.eclipse.jdt.ui.formatterprofiles.version=20
-<<<<<<< HEAD
-=======
 spelling_locale=en_GB
->>>>>>> branch 'main' of https://github.com/pshoa-shtranha/ES-2Sem-2021-Grupo-46
 spelling_locale_initialized=true
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true

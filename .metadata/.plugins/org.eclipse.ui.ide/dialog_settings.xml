@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ChooseWorkspaceDialogSettings">
+<<<<<<< HEAD
 		<item key="DIALOG_X_ORIGIN" value="201"/>
 		<item key="DIALOG_Y_ORIGIN" value="197"/>
 	</section>
@@ -9,5 +10,13 @@
 		</list>
 	</section>
 	<section name="SmartImportWizard">
+=======
+		<item key="DIALOG_X_ORIGIN" value="196"/>
+		<item key="DIALOG_Y_ORIGIN" value="197"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+>>>>>>> branch 'main' of https://github.com/pshoa-shtranha/ES-2Sem-2021-Grupo-46
 	</section>
 </section>
