@@ -1,81 +1,40 @@
-package lalss;
+package es_g46.es_g46;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+
+import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.Statement;
+import com.github.javaparser.ast.visitor.VoidVisitor;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class FileManagement extends Thread {
 
 	private int[] id;
-	private File files;
+	private File[] files;
 	private String[][] board;
-	
-	public FileManagement(int[] id, File files, String[][] board) {
+
+	FileManagement(File[] files, int[] id) {
 		
 		this.id = id;
 		this.files = files;
-		this.board = board;
+		this.board = new String[files.length][this.id.length + 4];
+		Thread[] threads = new Thread[files.length];
+		for(int i = 0; i < files.length; i++) {
+			
+			
+			OneFile a = new OneFile(id, files[i], board, i + 1);
+			threads[i] = a;
 		
-	}
-
-	public void run() {
-		
-		try {
-			
-			for(int i = 0; i < id.length; i++) {
-				
-				if(id[i] == 1) {
-					
-					switch(i) {
-					
-						case 1:
-							//numberLinesClass();
-							//LOC_class
-							break;
-						case 2:
-							//numberMethodsClass();
-							//NOM_class
-							break;
-						case 3:
-							//numberLinesMethod();
-							//LOC_method
-							break;
-						case 4:
-							//cyclesMethod();
-							//CYCLO_method
-							break;
-						case 5:
-							//cyclesClass();
-							//WMC_class
-							break;
-					}
-				}
-			}
-			
-		} catch (InterruptedException e) {
-			
-			System.out.println("Thread: "+id+" foi interrompida!");
 		}
-	}
-	public static void main(String[] args) throws InterruptedException {
-		
-		//tem de ser criada outra classe que possa ser inicializada com com o array de ficheiros e com o array das opcoes
-		//selecionadas pelo utilizador
-		//o main desta classe passa inteiramente para a nova classe e o objeto e inicializado com o array de ficheiros e com
-		//o array de int ja preenchidos
-		File[] files = new File[5];
-		int[] id = new int[5];
-		Thread[] multiFiles = new Thread[files.length];
-		String[][] board = new String[files.length][id.length];
-		for(int i = 0; i < multiFiles.length; i++) {
-			
-			multiFiles[i] = new FileManagement(id, files[i], board);
-		}
-		
-		for(Thread t:multiFiles) {
+		for(Thread t:threads) {
 			
 			t.start();
 		}
 		
-		for(Thread t:multiFiles) {
+		for(Thread t:threads) {
 			
 			try {
 				t.join();
@@ -84,10 +43,29 @@ public class FileManagement extends Thread {
 			}
 		}
 		
-		//chamar metodo para imprimir os resultados que estao no array board
-		System.out.println("O programa terminou!");
+		//chamar um metodo que estara dentro desta classe e que ira escrever todos os valores
+		//presentes no array board para um ficheiro excel que sera criado no metodo
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		//classe para testar o programa
+		//insiram os vários ficheiros ao array de files e esta pronto a testar!!
+		final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
+		File file = new File(FILE_PATH);
+		final String FILE_PATH2 = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\CloudToMySQL.java";
+		File file2 = new File(FILE_PATH2);
+		File[] files = new File[2];
+		files[0] = file;
+		files[1] = file2;
+		int[] smells = new int[5];
+		smells[0] = 1;
+		smells[1] = 1;
+		smells[2] = 1;
+		smells[3] = 1;
+		smells[4] = 1;
+		FileManagement a = new FileManagement(files, smells);
+		System.out.println("A pesquisa no ficheiro terminou!");
 
 	}
-
 }
-
