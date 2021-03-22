@@ -18,15 +18,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.text.html.HTMLDocument.Iterator;
+import javax.swing.table.DefaultTableModel;
 
 public class GUI {
 	
 	private JFrame frame;
 	private JFrame frame_metricas;
-	private JPanel topPanel;
 	private JPanel bottomPanel;
+	private JPanel topPanel;
 	private File file;
 	private String path = "C:\\Users\\marga\\OneDrive\\Ambiente de Trabalho\\Code_Smells.xlsx";
+	private JTable table;
 	
 
 	public GUI() {
@@ -39,7 +41,7 @@ public class GUI {
 	public void gui_metricas() {
 		
 		frame_metricas = new JFrame("metricas");
-		frame_metricas.setLayout(new BorderLayout());
+		frame_metricas.getContentPane().setLayout(new BorderLayout());
 		frame_metricas.pack();
 		frame_metricas.setLocation(100, 50);
 		frame_metricas.setSize(100, 20);
@@ -112,7 +114,7 @@ public class GUI {
 			}  
 	}
 	*/
-	private void upPanel() {
+	private void lowPanel() {
 		
 		JButton button = new JButton("Show Excel"); 
 		button.addActionListener(new ActionListener() {
@@ -188,14 +190,14 @@ public class GUI {
 				JTextField text_metricas = new JTextField(10);
 
 				JPanel frame2 = new JPanel(); 
-				frame_metricas.add(frame2, BorderLayout.NORTH);
+				frame_metricas.getContentPane().add(frame2, BorderLayout.NORTH);
 				frame2.setLayout(new FlowLayout() );
 				
 				frame2.add(label_metricas);
 				frame2.add(text_metricas);
 				
 				JPanel frame3 = new JPanel(); 
-				frame_metricas.add(frame3, BorderLayout.CENTER);
+				frame_metricas.getContentPane().add(frame3, BorderLayout.CENTER);
 				frame3.setLayout(new GridLayout(6,1));
 				
 				JCheckBox checkBox1 = new JCheckBox("0");  
@@ -229,37 +231,50 @@ public class GUI {
 					}
 				});
 				
-				frame_metricas.add(button20, BorderLayout.SOUTH);			
+				frame_metricas.getContentPane().add(button20, BorderLayout.SOUTH);			
 			}
 		});
 		
-		topPanel = new JPanel();
-		frame.add(topPanel, BorderLayout.SOUTH);
-		topPanel.setLayout(new FlowLayout());
+		bottomPanel = new JPanel();
+		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+		bottomPanel.setLayout(new FlowLayout());
 		
-		topPanel.add(button);
-		topPanel.add(button1);
-		topPanel.add(button2);
-		topPanel.add(button3);
-		topPanel.add(button4);
-		topPanel.add(button5);
-		topPanel.add(button6);
+		bottomPanel.add(button);
+		bottomPanel.add(button1);
+		bottomPanel.add(button2);
+		bottomPanel.add(button3);
+		bottomPanel.add(button4);
+		bottomPanel.add(button5);
+		bottomPanel.add(button6);
 //		topPanel.add(button7);
 //		topPanel.add(button8);
-		topPanel.add(button9);
+		bottomPanel.add(button9);
 
 	}
 	
-	private void lowPanel() {
+	private void upPanel() {
 	
-		bottomPanel = new JPanel();
-		frame.add(bottomPanel, BorderLayout.NORTH);
-		bottomPanel.setLayout(new GridLayout(1,5));
+		topPanel = new JPanel();
+		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
+		topPanel.setLayout(new GridLayout(1,5));
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"MethodID", "package", "class", "method", "NOM_class", "LOC_class", "WMC_class", "LOC_method", "CYCLO_Method"},
+			},
+			new String[] {
+				"MethodID", "package", "class", "method", "NOM_class", "LOC_class", "WMC_class", "LOC_method", "CYCLO_Method"
+			}
+		));
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(8).setPreferredWidth(91);
+		topPanel.add(table);
 	}
 	
 	
 	private void addFrameContent() {
-		frame.setLayout(new BorderLayout());
+		frame.getContentPane().setLayout(new BorderLayout());
 		upPanel();
 		lowPanel();
 	}
