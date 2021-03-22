@@ -211,11 +211,11 @@ private int[] buttonMetricas() {
 						}
 						
 					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
+						// TODO Auto-generated catch block1
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					} catch (IOException e2) {
-						// TODO Auto-generated catch block
+						// TODO Auto-generated catch block2
 						e2.printStackTrace();
 						JOptionPane.showMessageDialog(null, e2.getMessage());
 					}
