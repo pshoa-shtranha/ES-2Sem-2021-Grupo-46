@@ -1,4 +1,4 @@
-package es_g46.es_g46;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -30,6 +30,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import javax.swing.BoxLayout;
 
 public class GUI {
@@ -75,32 +76,6 @@ public class GUI {
 		frame.setVisible(true);
 	}
 
-	/*
-	 * public void showExcel(){
-	 * 
-	 * file = new File(path); String line = null; System.out.println("aqui aqui");
-	 * try { Scanner scanner = new Scanner(file); System.out.println("please");
-	 * while(scanner.hasNextLine()) { line = scanner.nextLine(); System.out.println(
-	 * "aqui"); } scanner.close(); } catch (FileNotFoundException e) {
-	 * System.err.println("Ficheiro não encontrado"); } System.out.println(line);
-	 * textArea = new JTextArea(line); frame.add(textArea, BorderLayout.CENTER); }
-	 * 
-	 * public void showExcel() { { try {
-	 * 
-	 * file = new File(path); //creating a new file instance FileInputStream fis =
-	 * new FileInputStream(path); //obtaining bytes from the file //creating
-	 * Workbook instance that refers to .xlsx file XSSFWorkbook wb = new
-	 * XSSFWorkbook(fis); XSSFSheet sheet = wb.getSheetAt(0); //creating a Sheet
-	 * object to retrieve object Iterator<Row> itr = sheet.iterator(); //iterating
-	 * over excel file while (itr.hasNext()) { Row row = itr.next(); Iterator<Cell>
-	 * cellIterator = row.cellIterator(); //iterating over each column while
-	 * (cellIterator.hasNext()) { Cell cell = cellIterator.next(); switch
-	 * (cell.getCellType()) { case Cell.CELL_TYPE_STRING: //field that represents
-	 * string cell type System.out.print(cell.getStringCellValue() + "\t\t\t");
-	 * break; case Cell.CELL_TYPE_NUMERIC: //field that represents number cell type
-	 * System.out.print(cell.getNumericCellValue() + "\t\t\t"); break; default: } }
-	 * System.out.println(""); } } catch(Exception e) { e.printStackTrace(); } } }
-	 */
 	private int[] buttonMetricas() {
 
 		metricas = new int[5];
@@ -154,17 +129,10 @@ public class GUI {
 				// if import button is clicked
 				if (excelChooser == JFileChooser.APPROVE_OPTION) {
 					try {
-						excelFile = excelFileChooser.getSelectedFile();
-						excelFIS = new FileInputStream(excelFile);
-						excelBIS = new BufferedInputStream(excelFIS);
-
-						excelJtableImport = new XSSFWorkbook(excelBIS);
-						XSSFSheet excelSheet = excelJtableImport.getSheetAt(0);
-
+						XSSFSheet excelSheet = UsefulMethods.generateExcelSheet(excelFileChooser);
 						// Looping through excel columns and rows (começa na 2a fila)
 						for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
 							XSSFRow excelRow = excelSheet.getRow(row);
-
 							DefaultTableModel model = (DefaultTableModel) table.getModel();
 							// adding row to the table
 							model.addRow(new Object[] { excelRow.getCell(0), excelRow.getCell(1), excelRow.getCell(2),
@@ -172,15 +140,6 @@ public class GUI {
 									excelRow.getCell(7), excelRow.getCell(8), excelRow.getCell(9),
 									excelRow.getCell(10) });
 
-//							for(int column = 0; column < excelRow.getLastCellNum(); column++) {
-//								XSSFCell excelCell = excelRow.getCell(column);
-//								if(excelCell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
-//									System.out.println(excelCell.getNumericCellValue());									
-//								}
-//								else if(excelCell.getCellType() == XSSFCell.CELL_TYPE_STRING) {
-//									System.out.println(excelCell.getStringCellValue());
-//								}
-//							}
 						}
 
 					} catch (FileNotFoundException e1) {
@@ -195,6 +154,7 @@ public class GUI {
 
 				}
 			}
+
 		});
 
 		JButton button1 = new JButton("Import Java Files");
@@ -212,10 +172,10 @@ public class GUI {
 					ficheirosJava = new File(ficheiroPath);
 					if (ficheirosJava.isDirectory()) {
 						List<File> files = new ArrayList<File>();
-						//guarda os ficheiros .java todos do diretório numa lista
+						// guarda os ficheiros .java todos do diretório numa lista
 						UsefulMethods.listJavaFiles(ficheirosJava.getAbsolutePath(), files);
-						
-						//print files on screen
+
+						// print files on screen
 						for (File f : files) {
 							System.out.println(f.getName());
 						}
@@ -225,8 +185,7 @@ public class GUI {
 				}
 			}
 		});
-		
-		
+
 		JButton button2 = new JButton("Add Rule");
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -309,6 +268,7 @@ public class GUI {
 		 * ActionListener() { public void actionPerformed(ActionEvent e) { //colocar
 		 * ação do botão } });
 		 */
+
 		JButton button9 = new JButton("Choose metricas");
 		button9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -378,8 +338,6 @@ public class GUI {
 		bottomPanel.add(button9);
 
 	}
-
-	
 
 	private void upPanel() {
 
