@@ -51,13 +51,15 @@ public class FileManagement extends Thread {
 		
 		//classe para testar o programa
 		//insiram os vários ficheiros ao array de files e esta pronto a testar!!
-		final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
+		//final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
+		//File file = new File(FILE_PATH);
+		final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\jasml\\compiler\\SourceCodeParser.java";
 		File file = new File(FILE_PATH);
-		final String FILE_PATH2 = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\CloudToMySQL.java";
-		File file2 = new File(FILE_PATH2);
-		File[] files = new File[2];
+		//final String FILE_PATH2 = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\CloudToMySQL.java";
+		//File file2 = new File(FILE_PATH2);
+		File[] files = new File[1];
 		files[0] = file;
-		files[1] = file2;
+		//files[1] = file2;
 		int[] smells = new int[5];
 		smells[0] = 1;
 		smells[1] = 1;

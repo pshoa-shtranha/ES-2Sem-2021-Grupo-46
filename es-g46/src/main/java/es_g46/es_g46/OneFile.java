@@ -114,24 +114,6 @@ public class OneFile extends Thread {
 			}
 	}
 	
-	/*public static void main(String[] args) throws InterruptedException {
-		
-		final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
-		int[] smells = new int[5];
-		smells[0] = 1;
-		smells[1] = 1;
-		smells[2] = 1;
-		smells[3] = 1;
-		smells[4] = 1;
-		String[][] board = new String[1][smells.length + 4];
-		File file = new File(FILE_PATH);
-		OneFile a = new OneFile(smells, file, board, 1);
-		a.start();
-		a.join();
-		System.out.println("A pesquisa no ficheiro terminou!");
-
-	}*/
-	
 	public String getNameMethods() {
 		
 		StringBuilder list = new StringBuilder();
@@ -255,7 +237,7 @@ public class OneFile extends Thread {
 		VoidVisitor<List<String>> methodSizeVisitor = new ClassSize();
 		methodSizeVisitor.visit(this.cu, classSizes);
 		int size = this.getTotalMethods();
-		String tamanho = classSizes.remove(0);
+		String tamanho = classSizes.remove(classSizes.size() - 1);
 		for(int i = 0; i < size; i++) {
 			list.append(tamanho);
 			list.append("|");
@@ -271,7 +253,7 @@ public class OneFile extends Thread {
 		VoidVisitor<List<String>> methodSizeVisitor = new ClassName();
 		methodSizeVisitor.visit(this.cu, classSizes);
 		int size = this.getTotalMethods();
-		String nome = classSizes.remove(0);
+		String nome = classSizes.remove(classSizes.size() - 1);
 		for(int i = 0; i < size; i++) {
 			list.append(nome);
 			list.append("|");
