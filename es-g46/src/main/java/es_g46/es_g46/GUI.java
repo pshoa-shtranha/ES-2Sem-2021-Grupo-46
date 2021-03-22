@@ -164,7 +164,6 @@ private int[] buttonMetricas() {
         	}
          System.out.println(metricas[i]);
         }
-		 System.out.println(Arrays.toString(metricas));
         return metricas;        
         }
 
