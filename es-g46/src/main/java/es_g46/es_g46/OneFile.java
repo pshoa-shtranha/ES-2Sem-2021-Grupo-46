@@ -266,9 +266,16 @@ public class OneFile extends Thread {
 		Scanner reader;
 		String pacote = null;
 		try {
+			
 			reader = new Scanner(this.files);
-			pacote = reader.nextLine().toString();
-			reader.close();
+			while(reader.hasNext()) {
+				pacote = reader.nextLine().toString();
+				if(pacote.contains("package")) {
+					reader.close();
+					return pacote;
+				}
+			}
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
