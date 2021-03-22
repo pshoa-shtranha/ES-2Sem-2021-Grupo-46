@@ -28,6 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.BoxLayout;
 
 public class GUI {
 	
@@ -272,14 +273,14 @@ private int[] buttonMetricas() {
 				text_metricas = new JTextField(10);
 
 				JPanel frame2 = new JPanel(); 
-				frame_metricas.add(frame2, BorderLayout.NORTH);
+				frame_metricas.getContentPane().add(frame2, BorderLayout.NORTH);
 				frame2.setLayout(new FlowLayout() );
 				
 				frame2.add(label_metricas);
 				frame2.add(text_metricas);
 				
 				JPanel frame3 = new JPanel(); 
-				frame_metricas.add(frame3, BorderLayout.CENTER);
+				frame_metricas.getContentPane().add(frame3, BorderLayout.CENTER);
 				frame3.setLayout(new GridLayout(6,1));
 				
 				checkBox1 = new JCheckBox("NOM_class");  
@@ -304,7 +305,7 @@ private int[] buttonMetricas() {
 					}
 				});
 				
-				frame_metricas.add(button20, BorderLayout.SOUTH);			
+				frame_metricas.getContentPane().add(button20, BorderLayout.SOUTH);			
 			}
 		});
 		
@@ -399,8 +400,7 @@ private int[] buttonMetricas() {
 	private void upPanel() {
 	
 		topPanel = new JPanel();
-		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
-		topPanel.setLayout(new GridLayout(1,5));
+		frame.getContentPane().add(topPanel, BorderLayout.CENTER);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -411,8 +411,8 @@ private int[] buttonMetricas() {
 			}
 		));
 		table.getColumnModel().getColumn(8).setPreferredWidth(91);
+		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 		topPanel.add(table);
-		
 		JScrollPane js=new JScrollPane(table);
 		topPanel.add(js);
 //		js.setVisible(true);
