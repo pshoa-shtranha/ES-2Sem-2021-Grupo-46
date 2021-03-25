@@ -50,20 +50,20 @@ public class OneFile extends Thread {
 	public void run() {
 		
 		String coluna1 = this.getMethodID();
-		System.out.println(coluna1);
+		System.out.println("coluna1: " + coluna1);
 		board[numberFile - 1][0] = coluna1;
 		
 		String coluna2 = this.getPackageName();
-		System.out.println(coluna2);
+		System.out.println("coluna2: " + coluna2);
 		board[numberFile - 1][1] = coluna2;
 		
 		String coluna3 = this.getClassName();
-		System.out.println(coluna3);
+		System.out.println("coluna3: " + coluna3);
 		board[numberFile - 1][2] = coluna3;
 		
 		String coluna4 = this.getNameMethods();
 		board[numberFile - 1][3] = coluna4;
-		System.out.println(coluna4);
+		System.out.println("coluna4: " + coluna4);
 		
 			for(int i = 0; i < id.length; i++) {
 				
@@ -74,15 +74,15 @@ public class OneFile extends Thread {
 						case 0:
 							
 							String coluna5 = this.getNumberMethods();
-							board[numberFile - 1][i + 2] = coluna5;
-							System.out.println(coluna5);
+							board[numberFile - 1][i + 4] = coluna5;
+							System.out.println("coluna5: " + coluna5);
 							//nom_class
 							//numero metodos por classe
 							break;
 						case 1:
 							String coluna6 = this.getClassSize();
-							board[numberFile - 1][i + 2] = coluna6;
-							System.out.println(coluna6);
+							board[numberFile - 1][i + 4] = coluna6;
+							System.out.println("coluna6: " + coluna6);
 							//numero de linhas da classe
 							//loc_class
 							
@@ -91,21 +91,21 @@ public class OneFile extends Thread {
 							
 							//complexidade ciclica da classe
 							String coluna7 = this.getCyclicClass();
-							board[numberFile - 1][i + 2] = coluna7;
-							System.out.println(coluna7);
+							board[numberFile - 1][i + 4] = coluna7;
+							System.out.println("coluna7: " + coluna7);
 							break;
 						case 3:
 							String coluna8 = this.getSizeMethods();
-							board[numberFile - 1][i + 2] = coluna8;
-							System.out.println(coluna8);
+							board[numberFile - 1][i + 4] = coluna8;
+							System.out.println("coluna8: " + coluna8);
 							//numero de linhas do metodo
 							
 							break;
 						case 4:
 							
 							String coluna9 = this.getCyclicMethods();
-							board[numberFile - 1][i + 2] = coluna9;
-							System.out.println(coluna9);
+							board[numberFile - 1][i + 4] = coluna9;
+							System.out.println("coluna9: " + coluna9);
 							
 							//complexidade ciclioca do metodo
 							break;
@@ -117,7 +117,7 @@ public class OneFile extends Thread {
 	public String getNameMethods() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> methodNames = new ArrayList<>();
 		VoidVisitor<List<String>> methodNameVisitor = new MethodNameCollector();
 		methodNameVisitor.visit(this.cu, methodNames);
@@ -134,7 +134,7 @@ public class OneFile extends Thread {
 	public String getSizeMethods() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> methodSizes = new ArrayList<>();
 		VoidVisitor<List<String>> methodSizeVisitor = new MethodSizeCollector();
 		methodSizeVisitor.visit(this.cu, methodSizes);
@@ -150,7 +150,7 @@ public class OneFile extends Thread {
 	public String getCyclicMethods() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> methodSizes = new ArrayList<>();
 		VoidVisitor<List<String>> methodSizeVisitor = new MethodCyclicCollector();
 		methodSizeVisitor.visit(this.cu, methodSizes);
@@ -166,7 +166,7 @@ public class OneFile extends Thread {
 	public String getCyclicClass() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> methodSizes = new ArrayList<>();
 		VoidVisitor<List<String>> methodSizeVisitor = new MethodCyclicCollector();
 		methodSizeVisitor.visit(this.cu, methodSizes);
@@ -187,7 +187,7 @@ public class OneFile extends Thread {
 	public String getMethodID() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> methodNames = new ArrayList<>();
 		VoidVisitor<List<String>> methodNameVisitor = new MethodNameCollector();
 		methodNameVisitor.visit(this.cu, methodNames);
@@ -205,7 +205,7 @@ public class OneFile extends Thread {
 	public String getNumberMethods() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> methodNames = new ArrayList<>();
 		VoidVisitor<List<String>> methodNameVisitor = new MethodNameCollector();
 		methodNameVisitor.visit(this.cu, methodNames);
@@ -232,7 +232,7 @@ public class OneFile extends Thread {
 	public String getClassSize() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> classSizes = new ArrayList<>();
 		VoidVisitor<List<String>> methodSizeVisitor = new ClassSize();
 		methodSizeVisitor.visit(this.cu, classSizes);
@@ -248,7 +248,7 @@ public class OneFile extends Thread {
 	public String getClassName() {
 		
 		StringBuilder list = new StringBuilder();
-		list.append("|");
+//		list.append("|");
 		List<String> classSizes = new ArrayList<>();
 		VoidVisitor<List<String>> methodSizeVisitor = new ClassName();
 		methodSizeVisitor.visit(this.cu, classSizes);
