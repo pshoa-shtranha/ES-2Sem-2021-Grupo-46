@@ -49,6 +49,25 @@ public class OneFile extends Thread {
 
 	public void run() {
 		
+		List<String> classSizes = new ArrayList<>();
+		VoidVisitor<List<String>> classNameVisitor = new ClassName();
+		classNameVisitor.visit(this.cu, classSizes);
+		
+		if(this.getTotalMethods() == 0 && classSizes.size() != 0) {
+			
+			String class1 = this.getPackageName();
+			System.out.println("coluna 2: " + class1);
+			board[numberFile - 1][1] = class1;
+			
+			String class2 = this.getClassName();
+			System.out.println("coluna 3: " + class2);
+			board[numberFile - 1][2] = class2;
+			
+			String class3 = this.getClassSize();
+			board[numberFile - 1][5] = class3;
+			System.out.println("coluna 6: " + class3);
+		} else {
+			
 		String coluna1 = this.getMethodID();
 		System.out.println("coluna1: " + coluna1);
 		board[numberFile - 1][0] = coluna1;
@@ -112,6 +131,7 @@ public class OneFile extends Thread {
 					}
 				}
 			}
+		}
 	}
 	
 	public String getNameMethods() {
@@ -152,8 +172,8 @@ public class OneFile extends Thread {
 		StringBuilder list = new StringBuilder();
 //		list.append("|");
 		List<String> methodSizes = new ArrayList<>();
-		VoidVisitor<List<String>> methodSizeVisitor = new MethodCyclicCollector();
-		methodSizeVisitor.visit(this.cu, methodSizes);
+		VoidVisitor<List<String>> methodCyclicVisitor = new MethodCyclicCollector();
+		methodCyclicVisitor.visit(this.cu, methodSizes);
 		
 		while(!methodSizes.isEmpty()) {
 			String method = methodSizes.remove(0);
@@ -168,8 +188,8 @@ public class OneFile extends Thread {
 		StringBuilder list = new StringBuilder();
 //		list.append("|");
 		List<String> methodSizes = new ArrayList<>();
-		VoidVisitor<List<String>> methodSizeVisitor = new MethodCyclicCollector();
-		methodSizeVisitor.visit(this.cu, methodSizes);
+		VoidVisitor<List<String>> classCyclicVisitor = new MethodCyclicCollector();
+		classCyclicVisitor.visit(this.cu, methodSizes);
 		int count = 0;
 		while(!methodSizes.isEmpty()) {
 			String method = methodSizes.remove(0);
@@ -225,8 +245,7 @@ public class OneFile extends Thread {
 		List<String> methodNames = new ArrayList<>();
 		VoidVisitor<List<String>> methodNameVisitor = new MethodNameCollector();
 		methodNameVisitor.visit(this.cu, methodNames);
-		int total = methodNames.size();
-		return total;
+		return methodNames.size();
 	}
 	
 	public String getClassSize() {
@@ -234,9 +253,12 @@ public class OneFile extends Thread {
 		StringBuilder list = new StringBuilder();
 //		list.append("|");
 		List<String> classSizes = new ArrayList<>();
-		VoidVisitor<List<String>> methodSizeVisitor = new ClassSize();
-		methodSizeVisitor.visit(this.cu, classSizes);
+		VoidVisitor<List<String>> classSizeVisitor = new ClassSize();
+		classSizeVisitor.visit(this.cu, classSizes);
 		int size = this.getTotalMethods();
+		if(size == 0) {
+			size = 1;
+		}
 		String tamanho = classSizes.remove(classSizes.size() - 1);
 		for(int i = 0; i < size; i++) {
 			list.append(tamanho);
@@ -250,9 +272,12 @@ public class OneFile extends Thread {
 		StringBuilder list = new StringBuilder();
 //		list.append("|");
 		List<String> classSizes = new ArrayList<>();
-		VoidVisitor<List<String>> methodSizeVisitor = new ClassName();
-		methodSizeVisitor.visit(this.cu, classSizes);
+		VoidVisitor<List<String>> classNameVisitor = new ClassName();
+		classNameVisitor.visit(this.cu, classSizes);
 		int size = this.getTotalMethods();
+		if(size == 0) {
+			size = 1;
+		}
 		String nome = classSizes.remove(classSizes.size() - 1);
 		for(int i = 0; i < size; i++) {
 			list.append(nome);
@@ -265,14 +290,16 @@ public class OneFile extends Thread {
 		
 		Scanner reader;
 		String pacote = null;
+		String[] nomePacote = null;
 		try {
 			
 			reader = new Scanner(this.files);
 			while(reader.hasNext()) {
 				pacote = reader.nextLine().toString();
 				if(pacote.contains("package")) {
+					nomePacote = pacote.split(" ");
 					reader.close();
-					return pacote;
+					return nomePacote[1];
 				}
 			}
 			
@@ -281,6 +308,6 @@ public class OneFile extends Thread {
 			e.printStackTrace();
 		}
 		
-		return pacote;
+		return nomePacote[1];
 	}
 }
