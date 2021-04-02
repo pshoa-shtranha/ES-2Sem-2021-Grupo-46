@@ -24,9 +24,21 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.resolution.types.ResolvedType;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 
+/**
+ * Class that allows the .java to be visited by the CompilationUnit
+ * 
+ * @author Luis Santos
+ * @version 2.0
+ */
+
 public class MethodCyclicCollector extends VoidVisitorAdapter<List<String>> {
 	
-	@Override
+	/**
+	 * Returns the cyclic complexity of the methods of the .java and puts it inside a list
+	 * 
+	 * @param md file .java with the right parser
+	 * @param collector list of strings
+	 */
     public void visit(MethodDeclaration md, List<String> collector) {
         super.visit(md, collector);
         int count = 0;

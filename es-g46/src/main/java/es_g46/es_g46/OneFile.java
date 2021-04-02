@@ -23,6 +23,13 @@ import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSol
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeSolver;
 
+/**
+ * Class that extracts the intended metrics from a .java
+ * 
+ * @author Luis Santos and Pavlo
+ * @version 2.0
+ */
+
 public class OneFile extends Thread {
 
 	private int[] id;
@@ -30,7 +37,18 @@ public class OneFile extends Thread {
 	private String[][] board;
 	private CompilationUnit cu = null;
 	private int numberFile;
-
+	
+	/**
+	 * Calls the methods that do the extraction of certain metrics
+	 * Is ready to distinguish between class and interface
+	 * Writes the info on the console for programming purposes 
+	 * 
+	 * @param id array of integer with the intended metrics to be extracted
+	 * @param files the .java to be extracted from
+	 * @param board array of strings where the metrics will be stored
+	 * @param numberFile the number of the file, used to know where to store the info in the array of strings
+	 */
+	
 	public OneFile(int[] id, File files, String[][] board, int numberFile) {
 		
 		this.id = id;
@@ -47,6 +65,12 @@ public class OneFile extends Thread {
 		
 	}
 
+	/**
+	 * Method executed when the thread starts
+	 * Extracts different information if .java is class or interface
+	 *
+	 */
+	
 	public void run() {
 		
 		List<String> classSizes = new ArrayList<>();
@@ -134,6 +158,12 @@ public class OneFile extends Thread {
 		}
 	}
 	
+	/**
+	 * Puts the names of the methods into a single String to be deciphered later
+	 * 
+	 * @return String includes the names of all the methods of the class
+	 */
+	
 	public String getNameMethods() {
 		
 		StringBuilder list = new StringBuilder();
@@ -151,6 +181,12 @@ public class OneFile extends Thread {
 		return list.toString();
 	}
 	
+	/**
+	 * Puts the size of the methods into a single String to be deciphered later
+	 * 
+	 * @return String includes the size of all the methods of the class
+	 */
+	
 	public String getSizeMethods() {
 		
 		StringBuilder list = new StringBuilder();
@@ -167,6 +203,13 @@ public class OneFile extends Thread {
 		}
 		return list.toString();
 	}
+	
+	/**
+	 * Puts the cyclic complexity of the methods into a single String to be deciphered later
+	 * 
+	 * @return String includes the cyclic complexity of all the methods of the class
+	 */
+	
 	public String getCyclicMethods() {
 		
 		StringBuilder list = new StringBuilder();
@@ -183,6 +226,13 @@ public class OneFile extends Thread {
 		}
 		return list.toString();
 	}
+	
+	/**
+	 * Puts the cyclic complexity of the class into a single String to be deciphered later
+	 * 
+	 * @return String includes the cyclic complexity of the class
+	 */
+	
 	public String getCyclicClass() {
 		
 		StringBuilder list = new StringBuilder();
@@ -204,6 +254,12 @@ public class OneFile extends Thread {
 		return list.toString();
 	}
 	
+	/**
+	 * Puts the method id into a single String to be deciphered later
+	 * 
+	 * @return String includes the id of all the methods of the class by the order of appearance
+	 */
+	
 	public String getMethodID() {
 		
 		StringBuilder list = new StringBuilder();
@@ -221,6 +277,12 @@ public class OneFile extends Thread {
 		}
 		return list.toString();
 	}
+	
+	/**
+	 * Puts the number of methods into a single String to be deciphered later
+	 * 
+	 * @return String includes the number of methods of the class
+	 */
 	
 	public String getNumberMethods() {
 		
@@ -240,6 +302,12 @@ public class OneFile extends Thread {
 		return list.toString();
 	}
 	
+	/**
+	 * Calculates how many methods exist in the class
+	 * 
+	 * @return integer includes the number of methods
+	 */
+	
 	public int getTotalMethods() {
 		
 		List<String> methodNames = new ArrayList<>();
@@ -247,6 +315,12 @@ public class OneFile extends Thread {
 		methodNameVisitor.visit(this.cu, methodNames);
 		return methodNames.size();
 	}
+	
+	/**
+	 * Puts the size of the class into a String
+	 * 
+	 * @return String includes the size of the class
+	 */
 	
 	public String getClassSize() {
 		
@@ -267,6 +341,12 @@ public class OneFile extends Thread {
 		return list.toString();
 	}
 	
+	/**
+	 * Puts the name of main class into a single String to be deciphered later
+	 * 
+	 * @return String includes the name of the class
+	 */
+	
 	public String getClassName() {
 		
 		StringBuilder list = new StringBuilder();
@@ -285,6 +365,12 @@ public class OneFile extends Thread {
 		}
 		return list.toString();
 	}
+	
+	/**
+	 * Puts the name of the package into a single String to be deciphered later
+	 * 
+	 * @return String includes the name of the package
+	 */
 	
 	public String getPackageName() {
 		
