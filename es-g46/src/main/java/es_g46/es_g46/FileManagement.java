@@ -17,13 +17,15 @@ public class FileManagement extends Thread {
 	private File[] files;
 	private String[][] board;
 	private String excelDir;
+	private String nameProject;
 
-	FileManagement(File[] files, int[] id, String excelDir) throws IOException {
+	FileManagement(File[] files, int[] id, String excelDir, String nameProject) throws IOException {
 		
 		this.id = id;
 		this.files = files;
 		this.board = new String[files.length][9];
 		this.excelDir = excelDir;
+		this.nameProject = nameProject;
 		Thread[] threads = new Thread[files.length];
 		for(int i = 0; i < files.length; i++) {
 			
@@ -46,7 +48,7 @@ public class FileManagement extends Thread {
 			}
 		}
 		
-		writeExcel(this.board, this.excelDir);
+		writeExcel(this.board, this.excelDir, this.nameProject);
 		
 	}
 	/*
@@ -79,7 +81,12 @@ public class FileManagement extends Thread {
 		System.out.println("A pesquisa no ficheiro terminou!");
 
 	}*/
-	public void writeExcel(String[][] board, String excelDir) {
+	public void writeExcel(String[][] board, String excelDir, String nameProject) {
+		
+		//necessita de alteracao
+		//o nome do excel tem de ter o nome do projeto seguido de _metrics
+		//o nome do projeto deve estar na variavel nameProject
+		//exemplo: eusouonomedoprojeto_metrics.xlsl
 		
 		FileOutputStream fout = null;
 		XSSFWorkbook wb = new XSSFWorkbook();
@@ -134,7 +141,5 @@ public class FileManagement extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//chamar um metodo que estara dentro desta classe e que ira escrever todos os valores
-		//presentes no array board para um ficheiro excel que sera criado no metodo
 	}
 }
