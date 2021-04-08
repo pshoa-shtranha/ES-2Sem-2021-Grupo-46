@@ -16,12 +16,14 @@ public class FileManagement extends Thread {
 	private int[] id;
 	private File[] files;
 	private String[][] board;
+	private String excelDir;
 
 	FileManagement(File[] files, int[] id, String excelDir) throws IOException {
 		
 		this.id = id;
 		this.files = files;
 		this.board = new String[files.length][9];
+		this.excelDir = excelDir;
 		Thread[] threads = new Thread[files.length];
 		for(int i = 0; i < files.length; i++) {
 			
@@ -44,11 +46,46 @@ public class FileManagement extends Thread {
 			}
 		}
 		
+		writeExcel(this.board, this.excelDir);
 		
+	}
+	/*
+	public static void main(String[] args) throws InterruptedException, IOException {
+		
+		//classe para testar o programa
+		//insiram os vários ficheiros ao array de files e esta pronto a testar!!
+		//final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
+//		File file = new File(FILE_PATH);
+		final String FILE_PATH = "C:\\Users\\Visha\\Desktop\\jasml\\compiler\\ConstantPoolGenerator.java";
+		File file = new File(FILE_PATH);
+		final String FILE_PATH2 = "C:\\Users\\Visha\\Desktop\\jasml\\compiler\\SourceCodeParser.java";
+		File file2 = new File(FILE_PATH2);
+		final String FILE_PATH3 = "C:\\Users\\Visha\\Desktop\\jasml\\decompiler\\JavaClassParser.java";
+		File file3 = new File(FILE_PATH3);
+//		File[] files = new File[1];
+		File[] files = new File[3];
+		files[0] = file;
+		files[1] = file2;
+		files[2] = file3;
+		int[] smells = new int[5];
+		smells[0] = 1;
+		smells[1] = 1;
+		smells[2] = 1;
+		smells[3] = 1;
+		smells[4] = 1;
+		// sitio onde ele guarda o excel
+		String excelDir = "C:\\Users\\Visha\\Desktop\\1_metricas.xlsx";
+		new FileManagement(files, smells, excelDir);
+		System.out.println("A pesquisa no ficheiro terminou!");
+
+	}*/
+	public void writeExcel(String[][] board, String excelDir) {
+		
+		FileOutputStream fout = null;
 		XSSFWorkbook wb = new XSSFWorkbook();
 		XSSFSheet excelSheet = wb.createSheet("Metricas");
-		
-		
+	
+	
 		int lastRow = 0;
 		for(int i = 0; i < board.length; i ++) {
 			System.out.println("Inicio do ficheiro!");
@@ -78,41 +115,26 @@ public class FileManagement extends Thread {
 			}
 			lastRow = excelSheet.getLastRowNum() + 1;
 		}
-		
-		FileOutputStream fout = new FileOutputStream(excelDir);
-		wb.write(fout);
-		fout.close();
+	
+		try {
+			fout = new FileOutputStream(excelDir);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			wb.write(fout);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			fout.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//chamar um metodo que estara dentro desta classe e que ira escrever todos os valores
 		//presentes no array board para um ficheiro excel que sera criado no metodo
-	}
-	
-	public static void main(String[] args) throws InterruptedException, IOException {
-		
-		//classe para testar o programa
-		//insiram os vários ficheiros ao array de files e esta pronto a testar!!
-		//final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
-//		File file = new File(FILE_PATH);
-		final String FILE_PATH = "C:\\Users\\Visha\\Desktop\\jasml\\compiler\\ConstantPoolGenerator.java";
-		File file = new File(FILE_PATH);
-		final String FILE_PATH2 = "C:\\Users\\Visha\\Desktop\\jasml\\compiler\\SourceCodeParser.java";
-		File file2 = new File(FILE_PATH2);
-		final String FILE_PATH3 = "C:\\Users\\Visha\\Desktop\\jasml\\decompiler\\JavaClassParser.java";
-		File file3 = new File(FILE_PATH3);
-//		File[] files = new File[1];
-		File[] files = new File[3];
-		files[0] = file;
-		files[1] = file2;
-		files[2] = file3;
-		int[] smells = new int[5];
-		smells[0] = 1;
-		smells[1] = 1;
-		smells[2] = 1;
-		smells[3] = 1;
-		smells[4] = 1;
-		// sitio onde ele guarda o excel
-		String excelDir = "C:\\Users\\Visha\\Desktop\\1_metricas.xlsx";
-		new FileManagement(files, smells, excelDir);
-		System.out.println("A pesquisa no ficheiro terminou!");
-
 	}
 }
