@@ -51,18 +51,18 @@ public class FileManagement extends Thread {
 		writeExcel(this.board, this.excelDir, this.nameProject);
 		
 	}
-	/*
+	
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		//classe para testar o programa
 		//insiram os vários ficheiros ao array de files e esta pronto a testar!!
 		//final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\FileManagement.java";
 //		File file = new File(FILE_PATH);
-		final String FILE_PATH = "C:\\Users\\Visha\\Desktop\\jasml\\compiler\\ConstantPoolGenerator.java";
+		final String FILE_PATH = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\jasml\\compiler\\ConstantPoolGenerator.java";
 		File file = new File(FILE_PATH);
-		final String FILE_PATH2 = "C:\\Users\\Visha\\Desktop\\jasml\\compiler\\SourceCodeParser.java";
+		final String FILE_PATH2 = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\jasml\\compiler\\SourceCodeParser.java";
 		File file2 = new File(FILE_PATH2);
-		final String FILE_PATH3 = "C:\\Users\\Visha\\Desktop\\jasml\\decompiler\\JavaClassParser.java";
+		final String FILE_PATH3 = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\jasml\\decompiler\\JavaClassParser.java";
 		File file3 = new File(FILE_PATH3);
 //		File[] files = new File[1];
 		File[] files = new File[3];
@@ -76,11 +76,11 @@ public class FileManagement extends Thread {
 		smells[3] = 1;
 		smells[4] = 1;
 		// sitio onde ele guarda o excel
-		String excelDir = "C:\\Users\\Visha\\Desktop\\1_metricas.xlsx";
-		new FileManagement(files, smells, excelDir);
+		String excelDir = "C:\\Users\\Maintenant Prêt\\Desktop\\1_metricas.xlsx";
+		FileManagement a = new FileManagement(files, smells, excelDir, "jasml");
 		System.out.println("A pesquisa no ficheiro terminou!");
 
-	}*/
+	}
 	public void writeExcel(String[][] board, String excelDir, String nameProject) {
 		
 		//necessita de alteracao
