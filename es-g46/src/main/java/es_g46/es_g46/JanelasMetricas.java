@@ -5,13 +5,26 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -185,7 +198,12 @@ public class JanelasMetricas {
 		JButton button33 = new JButton("Save");
 		button33.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				saveRegras();
+				try {
+					saveRegras();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -197,7 +215,7 @@ public class JanelasMetricas {
 		});
 
 		JButton button33v2 = new JButton("Load");
-		button33.addActionListener(new ActionListener() {
+		button33v2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File FicheirosTXT;
 				String ficheiroPath;
@@ -496,7 +514,7 @@ public class JanelasMetricas {
 	}
 
 	// retorna um array de String com as regras criadas
-	private static String[] saveRegras() {
+	private static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		string_regras = new String[7];
 
 		for (int i = 0; i < string_regras.length; i++) {
@@ -526,7 +544,6 @@ public class JanelasMetricas {
 		        System.out.println("Could not create file");
 		    }
 		
-		return string_regras;
 		return string_regras;
 	}
 
