@@ -219,8 +219,10 @@ public class JanelasMetricas {
 			public void actionPerformed(ActionEvent e) {
 				File FicheirosTXT;
 				String ficheiroPath;
-
-				String defaultCurrentDirectoryPath = "src/";
+				File directory = new File("regras");
+			    if (! directory.exists())
+			        directory.mkdir();
+				String defaultCurrentDirectoryPath = "regras/";
 				JFileChooser fileChooser = new JFileChooser(defaultCurrentDirectoryPath);
 				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				int chooser = fileChooser.showOpenDialog(null);
@@ -399,8 +401,10 @@ public class JanelasMetricas {
 			public void actionPerformed(ActionEvent e) {
 				File FicheirosTXT;
 				String ficheiroPath;
-
-				String defaultCurrentDirectoryPath = "src/";
+				File directory = new File("regras");
+			    if (! directory.exists())
+			        directory.mkdir();
+				String defaultCurrentDirectoryPath = "regras/";
 				JFileChooser fileChooser = new JFileChooser(defaultCurrentDirectoryPath);
 				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				int chooser = fileChooser.showOpenDialog(null);
@@ -531,8 +535,17 @@ public class JanelasMetricas {
 	    if (! directory.exists())
 	        directory.mkdir();
 		 try{
+		        String nomeFicheiro= Arrays.toString(string_regras);
+			if(nomeFicheiro.contains("<"))
+			nomeFicheiro = nomeFicheiro.replace("<", "MENOR");
+			if(nomeFicheiro.contains(">"))
+				nomeFicheiro = nomeFicheiro.replace("<", "MAIOR");
+			
+			
+			System.out.println(nomeFicheiro);
 		        Writer output = null;
-		        File file = new File("regras/"+ Arrays.toString(string_regras)+ ".txt");
+		        File file = new File("regras/"+"Class"+nomeFicheiro+ ".txt");
+		        file.createNewFile();
 		        output = new BufferedWriter(new FileWriter(file));
 
 		        output.write(Arrays.toString(string_regras));
@@ -564,8 +577,13 @@ public class JanelasMetricas {
 	    if (! directory.exists())
 	        directory.mkdir();
 		 try{
+		        String nomeFicheiro= Arrays.toString(string_regras2);
+				if(nomeFicheiro.contains("<"))
+				nomeFicheiro = nomeFicheiro.replace("<", "MENOR");
+				if(nomeFicheiro.contains(">"))
+					nomeFicheiro = nomeFicheiro.replace("<", "MAIOR");
 		        Writer output = null;
-		        File file = new File("regras/"+ Arrays.toString(string_regras2)+ ".txt");
+		        File file = new File("regras/"+"Method"+ nomeFicheiro+ ".txt");
 		        output = new BufferedWriter(new FileWriter(file));
 
 		        output.write(Arrays.toString(string_regras2));
