@@ -62,9 +62,12 @@ public class GUI {
 					try {
 						XSSFSheet excelSheet = UsefulMethods.generateExcelSheet(excelFileChooser);
 						// Looping through excel columns and rows (comeÃ§a na 2a fila)
-						for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						model.setRowCount(0);
+						for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
 							XSSFRow excelRow = excelSheet.getRow(row);
-							DefaultTableModel model = (DefaultTableModel) table.getModel();
+							//DefaultTableModel model = (DefaultTableModel) table.getModel();
+							//model.setRowCount(0);
 							// adding row to the table
 							model.addRow(new Object[] { excelRow.getCell(0), excelRow.getCell(1), excelRow.getCell(2),
 									excelRow.getCell(3), excelRow.getCell(4), excelRow.getCell(5), excelRow.getCell(6),
@@ -143,10 +146,14 @@ public class GUI {
 					XSSFWorkbook excelJtableImport = new XSSFWorkbook(excelBIS);
 					XSSFSheet excelSheet = excelJtableImport.getSheetAt(0);
 					// Looping through excel columns and rows (comeÃ§a na 2a fila)
-					for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.setRowCount(0);
+					for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
 						XSSFRow excelRow = excelSheet.getRow(row);
-						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						//DefaultTableModel model = (DefaultTableModel) table.getModel();
+						//model.fireTableRowsDeleted(0, model.getColumnCount());
 						// adding row to the table
+						//model.setRowCount(0);
 						model.addRow(new Object[] { excelRow.getCell(0), excelRow.getCell(1), excelRow.getCell(2),
 								excelRow.getCell(3), excelRow.getCell(4), excelRow.getCell(5), excelRow.getCell(6),
 								excelRow.getCell(7), excelRow.getCell(8), excelRow.getCell(9),
