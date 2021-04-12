@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class GUI {
 
@@ -129,6 +132,36 @@ public class GUI {
 				} catch(IOException i) {
 					
 					i.printStackTrace();
+				}
+				StringBuilder location = new StringBuilder();
+				location.append(excelDir);
+				location.append(project);
+				location.append("_metrics.xlsx");
+				try {
+					FileInputStream excelFIS = new FileInputStream(location.toString());
+					BufferedInputStream excelBIS = new BufferedInputStream(excelFIS);
+					XSSFWorkbook excelJtableImport = new XSSFWorkbook(excelBIS);
+					XSSFSheet excelSheet = excelJtableImport.getSheetAt(0);
+					// Looping through excel columns and rows (comeÃ§a na 2a fila)
+					for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
+						XSSFRow excelRow = excelSheet.getRow(row);
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						// adding row to the table
+						model.addRow(new Object[] { excelRow.getCell(0), excelRow.getCell(1), excelRow.getCell(2),
+								excelRow.getCell(3), excelRow.getCell(4), excelRow.getCell(5), excelRow.getCell(6),
+								excelRow.getCell(7), excelRow.getCell(8), excelRow.getCell(9),
+								excelRow.getCell(10) });
+
+					}
+
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block1
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block2
+					e2.printStackTrace();
+					JOptionPane.showMessageDialog(null, e2.getMessage());
 				}
 			}
 		});
