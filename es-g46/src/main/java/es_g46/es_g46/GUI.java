@@ -118,12 +118,14 @@ public class GUI {
 				smells[2] = 1;
 				smells[3] = 1;
 				smells[4] = 1;
+				String project = fileChooser.getSelectedFile().getName();
+				System.out.println(project);
 				File directory = new File("metricas");
 			    if (! directory.exists())
 			        directory.mkdir();
 				String excelDir = "metricas/";
 				try {
-				FileManagement a = new FileManagement(files, smells, excelDir, "jasml");
+				FileManagement a = new FileManagement(files, smells, excelDir, project);
 				} catch(IOException i) {
 					
 					i.printStackTrace();

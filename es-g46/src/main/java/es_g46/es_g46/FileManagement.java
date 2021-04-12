@@ -162,7 +162,7 @@ public class FileManagement extends Thread {
 		
 		try {
 			fout = new FileOutputStream(path.toString());
-			System.out.println(fout);
+			//System.out.println(fout);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
