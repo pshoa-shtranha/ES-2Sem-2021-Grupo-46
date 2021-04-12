@@ -5,13 +5,26 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -185,7 +198,12 @@ public class JanelasMetricas {
 		JButton button33 = new JButton("Save");
 		button33.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				saveRegras();
+				try {
+					saveRegras();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -197,9 +215,118 @@ public class JanelasMetricas {
 		});
 
 		JButton button33v2 = new JButton("Load");
-		button33.addActionListener(new ActionListener() {
+		button33v2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// açao do botao
+				File FicheirosTXT;
+				String ficheiroPath;
+				File directory = new File("regras");
+			    if (! directory.exists())
+			        directory.mkdir();
+				String defaultCurrentDirectoryPath = "regras/";
+				JFileChooser fileChooser = new JFileChooser(defaultCurrentDirectoryPath);
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				int chooser = fileChooser.showOpenDialog(null);
+				if (chooser == JFileChooser.APPROVE_OPTION) {
+					ficheiroPath = fileChooser.getSelectedFile().getAbsolutePath();
+					FicheirosTXT = new File(ficheiroPath);
+					if (FicheirosTXT.isDirectory()) {
+						List<File> files = new ArrayList<File>();
+						// guarda os ficheiros .java todos do diretório numa lista
+						UsefulMethods.listJavaFiles(FicheirosTXT.getAbsolutePath(), files);
+
+						// print files on screen
+						for (File f : files) {
+							System.out.println(f.getName());
+						}
+					} else if (FicheirosTXT.isFile()) {
+						BufferedReader br;
+						try {
+							br = new BufferedReader(new FileReader(ficheiroPath));
+							try {
+							    StringBuilder sb = new StringBuilder();
+							    String line = br.readLine();
+
+							    while (line != null) {
+							        sb.append(line);
+							        sb.append(System.lineSeparator());
+							        line = br.readLine();
+							    }
+							    String everything = sb.toString();
+							    String everythingReplace = everything.replace("[","");
+							    String everythingReplace2 = everythingReplace.replace("]","");
+							    
+							    System.out.println(everythingReplace2);
+							    String[] ss=everythingReplace2.split(",");
+							    ss[1]=ss[1].replace(" ","");
+							    ss[3]=ss[3].replace(" ","");
+							    ss[4]=ss[4].replace(" ","");
+							    ss[5]=ss[5].replace(" ","");
+							    
+
+							    
+							   
+		    
+							    for(int i =0; i<3;i++)
+							    {
+							    	
+							    	String textoDaComboBox1=comboBox1.getItemAt(i).toString();
+							   if( textoDaComboBox1.equals(ss[0]))
+							   {						   	
+								   comboBox1.setSelectedIndex(i);}
+							    String textoDaComboBox2=comboBox2.getItemAt(i).toString();
+							    if( textoDaComboBox2.equals(ss[1]))
+								   {
+									   comboBox2.setSelectedIndex(i);
+									   }
+							    String textoDaComboBox5="";
+							    if(i<2)
+							    { textoDaComboBox5=comboBox5.getItemAt(i).toString();
+							 
+							    if( textoDaComboBox5.equals(ss[3]))
+								   {
+									   comboBox5.setSelectedIndex(i);
+									   }
+							    }
+							    String textoDaComboBox3=comboBox3.getItemAt(i).toString();
+								   if( textoDaComboBox3.equals(ss[4]))
+								   {							   	
+									   comboBox3.setSelectedIndex(i);}
+								   String textoDaComboBox4=comboBox4.getItemAt(i).toString();
+								   if( textoDaComboBox4.equals(ss[5]))
+								   {							   	
+									   comboBox4.setSelectedIndex(i);}
+								  
+								   						   	
+									   text_regras.setText(ss[2]);
+									   text_regras1.setText(ss[6]);
+							    
+							    
+							    
+							    
+							    }    
+							    
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} finally {
+							    try {
+									br.close();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							
+							} 
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
+						
+						
+					}
+				}
 			}
 		});
 		bottomPanel_regrasv2.add(button33);
@@ -272,7 +399,117 @@ public class JanelasMetricas {
 		JButton button33v22 = new JButton("Load");
 		button33v22.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// açao do botao
+				File FicheirosTXT;
+				String ficheiroPath;
+				File directory = new File("regras");
+			    if (! directory.exists())
+			        directory.mkdir();
+				String defaultCurrentDirectoryPath = "regras/";
+				JFileChooser fileChooser = new JFileChooser(defaultCurrentDirectoryPath);
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				int chooser = fileChooser.showOpenDialog(null);
+				if (chooser == JFileChooser.APPROVE_OPTION) {
+					ficheiroPath = fileChooser.getSelectedFile().getAbsolutePath();
+					FicheirosTXT = new File(ficheiroPath);
+					if (FicheirosTXT.isDirectory()) {
+						List<File> files = new ArrayList<File>();
+						// guarda os ficheiros .java todos do diretório numa lista
+						UsefulMethods.listJavaFiles(FicheirosTXT.getAbsolutePath(), files);
+
+						// print files on screen
+						for (File f : files) {
+							System.out.println(f.getName());
+						}
+					} else if (FicheirosTXT.isFile()) {
+						BufferedReader br;
+						try {
+							br = new BufferedReader(new FileReader(ficheiroPath));
+							try {
+							    StringBuilder sb = new StringBuilder();
+							    String line = br.readLine();
+
+							    while (line != null) {
+							        sb.append(line);
+							        sb.append(System.lineSeparator());
+							        line = br.readLine();
+							    }
+							    String everything = sb.toString();
+							    String everythingReplace = everything.replace("[","");
+							    String everythingReplace2 = everythingReplace.replace("]","");
+							    
+							    System.out.println(everythingReplace2);
+							    String[] ss=everythingReplace2.split(",");
+							    ss[1]=ss[1].replace(" ","");
+							    ss[3]=ss[3].replace(" ","");
+							    ss[4]=ss[4].replace(" ","");
+							    ss[5]=ss[5].replace(" ","");
+							    
+
+							    
+							   
+		    
+							    for(int i =0; i<3;i++)
+							    {
+							    	if(i<2) {	
+							    	String textoDaComboBox1=comboBox1v2.getItemAt(i).toString();
+							   if( textoDaComboBox1.equals(ss[0]))
+							   {						   	
+								   comboBox1v2.setSelectedIndex(i);}}
+							    String textoDaComboBox2=comboBox2v2.getItemAt(i).toString();
+							    if( textoDaComboBox2.equals(ss[1]))
+								   {
+									   comboBox2v2.setSelectedIndex(i);
+									   }
+							    String textoDaComboBox5="";
+							    if(i<2)
+							    { textoDaComboBox5=comboBox5v2.getItemAt(i).toString();
+							 
+							    if( textoDaComboBox5.equals(ss[3]))
+								   {
+									   comboBox5v2.setSelectedIndex(i);
+									   }
+							    }
+							    if(i<2) {
+							    String textoDaComboBox3=comboBox3v2.getItemAt(i).toString();
+								   if( textoDaComboBox3.equals(ss[4]))
+								   {							   	
+									   comboBox3v2.setSelectedIndex(i);}}
+								   String textoDaComboBox4=comboBox4v2.getItemAt(i).toString();
+								   if( textoDaComboBox4.equals(ss[5]))
+								   {							   	
+									   comboBox4v2.setSelectedIndex(i);}
+								  
+								   						   	
+									   text_regrasv2.setText(ss[2]);
+									   text_regras1v2.setText(ss[6]);
+							    
+							    
+							    
+							    
+							    }    
+							    
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} finally {
+							    try {
+									br.close();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							
+							} 
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
+						
+						
+					}
+				}
 			}
 		});
 		bottomPanel_regras222.add(button33v2);
@@ -281,7 +518,7 @@ public class JanelasMetricas {
 	}
 
 	// retorna um array de String com as regras criadas
-	private static String[] saveRegras() {
+	private static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		string_regras = new String[7];
 
 		for (int i = 0; i < string_regras.length; i++) {
@@ -293,7 +530,33 @@ public class JanelasMetricas {
 			string_regras[5] = (String) comboBox4.getSelectedItem();
 			string_regras[6] = text_regras1.getText();
 		}
-		System.out.println(Arrays.toString(string_regras));
+		System.out.println(Arrays.toString(string_regras));		
+		File directory = new File("regras");
+	    if (! directory.exists())
+	        directory.mkdir();
+		 try{
+		        String nomeFicheiro= Arrays.toString(string_regras);
+			if(nomeFicheiro.contains("<"))
+			nomeFicheiro = nomeFicheiro.replace("<", "MENOR");
+			if(nomeFicheiro.contains(">"))
+				nomeFicheiro = nomeFicheiro.replace("<", "MAIOR");
+			
+			
+			System.out.println(nomeFicheiro);
+		        Writer output = null;
+		        File file = new File("regras/"+"Class"+nomeFicheiro+ ".txt");
+		        file.createNewFile();
+		        output = new BufferedWriter(new FileWriter(file));
+
+		        output.write(Arrays.toString(string_regras));
+
+		        output.close();
+		        System.out.println("File has been written");
+
+		    }catch(Exception e){
+		        System.out.println("Could not create file");
+		    }
+		
 		return string_regras;
 	}
 
@@ -310,6 +573,27 @@ public class JanelasMetricas {
 			string_regras2[6] = text_regras1v2.getText();
 		}
 		System.out.println(Arrays.toString(string_regras2));
+		File directory = new File("regras");
+	    if (! directory.exists())
+	        directory.mkdir();
+		 try{
+		        String nomeFicheiro= Arrays.toString(string_regras2);
+				if(nomeFicheiro.contains("<"))
+				nomeFicheiro = nomeFicheiro.replace("<", "MENOR");
+				if(nomeFicheiro.contains(">"))
+					nomeFicheiro = nomeFicheiro.replace("<", "MAIOR");
+		        Writer output = null;
+		        File file = new File("regras/"+"Method"+ nomeFicheiro+ ".txt");
+		        output = new BufferedWriter(new FileWriter(file));
+
+		        output.write(Arrays.toString(string_regras2));
+
+		        output.close();
+		        System.out.println("File has been written");
+
+		    }catch(Exception e){
+		        System.out.println("Could not create file");
+		    }
 		return string_regras2;
 	}
 
