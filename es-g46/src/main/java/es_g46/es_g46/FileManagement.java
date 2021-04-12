@@ -120,6 +120,9 @@ public class FileManagement extends Thread {
 //						System.out.println("null row");
 						excelRow = excelSheet.createRow(row);			
 					}
+					if(column == 7) {
+						column = 8;
+					}
 					Cell cell = excelRow.createCell(column);
 					cell.setCellValue(cells[k]);
 					row++;
