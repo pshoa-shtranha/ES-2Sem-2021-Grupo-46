@@ -94,12 +94,36 @@ public class FileManagement extends Thread {
 		//o nome do projeto deve estar na variavel nameProject
 		//exemplo: eusouonomedoprojeto_metrics.xlsl
 		
+		List<String> a = new ArrayList<String>();
+		a.add(0, "MethodID");
+		a.add(1, "package");
+		a.add(2, "class");
+		a.add(3, "method");
+		a.add(4, "NOM_class");
+		a.add(5, "LOC_class");
+		a.add(6, "WMC_class");
+		a.add(7, "is_God_Class");
+		a.add(8, "LOC_method");
+		a.add(9, "CYCLO_method");
+		a.add(10, "is_Long_Method");
+		
 		FileOutputStream fout = null;
 		XSSFWorkbook wb = new XSSFWorkbook();
 		XSSFSheet excelSheet = wb.createSheet("Metricas");
+		Row excelRow = excelSheet.getRow(0);
+		if (excelRow == null) {
+//			System.out.println("null row");
+			excelRow = excelSheet.createRow(0);			
+		}
+		int w = 0;
+		for(w = 0; w <= 10; w++) {
+			
+			//Row excelRow = excelSheet.getRow(0);
+			Cell cell = excelRow.createCell(w);
+			cell.setCellValue(a.get(w));
+		}
 	
-	
-		int lastRow = 0;
+		int lastRow = 1;
 		for(int i = 0; i < board.length; i ++) {
 			System.out.println("Inicio do ficheiro!");
 			int column = 0;
@@ -113,17 +137,17 @@ public class FileManagement extends Thread {
 				System.out.println(columnContent);
 				String[] cells = columnContent.split("\\|");
 				int row = lastRow;
-				Row excelRow = null;
+				Row excelRow2 = null;
 				for (int k = 0; k < cells.length; k++) {
-					excelRow = excelSheet.getRow(row);
-					if (excelRow == null) {
+					excelRow2 = excelSheet.getRow(row);
+					if (excelRow2 == null) {
 //						System.out.println("null row");
-						excelRow = excelSheet.createRow(row);			
+						excelRow2 = excelSheet.createRow(row);			
 					}
 					if(column == 7) {
 						column = 8;
 					}
-					Cell cell = excelRow.createCell(column);
+					Cell cell = excelRow2.createCell(column);
 					cell.setCellValue(cells[k]);
 					row++;
 				}
