@@ -77,7 +77,7 @@ public class OneFile extends Thread {
 		VoidVisitor<List<String>> classNameVisitor = new ClassName();
 		classNameVisitor.visit(this.cu, classSizes);
 		
-		if(this.getTotalMethods() == 0 && classSizes.size() != 0) {
+		/*if(this.getTotalMethods() == 0 && classSizes.size() != 0) {
 			
 			String class1 = this.getPackageName();
 			System.out.println("coluna 2: " + class1);
@@ -91,7 +91,7 @@ public class OneFile extends Thread {
 			board[numberFile - 1][5] = class3;
 			System.out.println("coluna 6: " + class3);
 		} else {
-			
+		*/	
 		String coluna1 = this.getMethodID();
 		System.out.println("coluna1: " + coluna1);
 		board[numberFile - 1][0] = coluna1;
@@ -156,7 +156,7 @@ public class OneFile extends Thread {
 				}
 			}
 		}
-	}
+	
 	
 	/**
 	 * Puts the names of the methods into a single String to be deciphered later
