@@ -118,7 +118,10 @@ public class GUI {
 				smells[2] = 1;
 				smells[3] = 1;
 				smells[4] = 1;
-				String excelDir = "C:\\Users\\Maintenant Prêt\\Desktop\\1_metricas.xlsx";
+				File directory = new File("metricas");
+			    if (! directory.exists())
+			        directory.mkdir();
+				String excelDir = "metricas/";
 				try {
 				FileManagement a = new FileManagement(files, smells, excelDir, "jasml");
 				} catch(IOException i) {

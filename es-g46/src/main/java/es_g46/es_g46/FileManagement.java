@@ -155,9 +155,14 @@ public class FileManagement extends Thread {
 			}
 			lastRow = excelSheet.getLastRowNum() + 1;
 		}
-	
+		StringBuilder path = new StringBuilder();
+		path.append(excelDir);
+		path.append(nameProject);
+		path.append("_metrics.xlsx");
+		
 		try {
-			fout = new FileOutputStream(excelDir);
+			fout = new FileOutputStream(path.toString());
+			System.out.println(fout);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
