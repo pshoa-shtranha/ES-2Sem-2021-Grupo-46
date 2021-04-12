@@ -88,6 +88,7 @@ public class GUI {
 		JButton button1 = new JButton("Import Java Files");
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				List<File> files = new ArrayList<File>();
 				File ficheirosJava;
 				String ficheiroPath;
 
@@ -99,7 +100,7 @@ public class GUI {
 					ficheiroPath = fileChooser.getSelectedFile().getAbsolutePath();
 					ficheirosJava = new File(ficheiroPath);
 					if (ficheirosJava.isDirectory()) {
-						List<File> files = new ArrayList<File>();
+						//List<File> files = new ArrayList<File>();
 						// guarda os ficheiros .java todos do diretÃ³rio numa lista
 						UsefulMethods.listJavaFiles(ficheirosJava.getAbsolutePath(), files);
 
@@ -110,6 +111,19 @@ public class GUI {
 					} else if (ficheirosJava.isFile()) {
 						System.out.println("Ã‰ um ficheiro");
 					}
+				}
+				int[] smells = new int[5];
+				smells[0] = 1;
+				smells[1] = 1;
+				smells[2] = 1;
+				smells[3] = 1;
+				smells[4] = 1;
+				String excelDir = "C:\\Users\\Maintenant Prêt\\Desktop\\1_metricas.xlsx";
+				try {
+				FileManagement a = new FileManagement(files, smells, excelDir, "jasml");
+				} catch(IOException i) {
+					
+					i.printStackTrace();
 				}
 			}
 		});

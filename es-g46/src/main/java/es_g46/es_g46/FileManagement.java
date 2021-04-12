@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,23 +16,23 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class FileManagement extends Thread {
 
 	private int[] id;
-	private File[] files;
+	private List<File> files;
 	private String[][] board;
 	private String excelDir;
 	private String nameProject;
 
-	FileManagement(File[] files, int[] id, String excelDir, String nameProject) throws IOException {
+	FileManagement(List<File> files, int[] id, String excelDir, String nameProject) throws IOException {
 		
 		this.id = id;
 		this.files = files;
-		this.board = new String[files.length][9];
+		this.board = new String[files.size()][9];
 		this.excelDir = excelDir;
 		this.nameProject = nameProject;
-		Thread[] threads = new Thread[files.length];
-		for(int i = 0; i < files.length; i++) {
+		Thread[] threads = new Thread[files.size()];
+		for(int i = 0; i < files.size(); i++) {
 			
 			
-			OneFile a = new OneFile(id, files[i], board, i + 1);
+			OneFile a = new OneFile(id, files.get(i), board, i + 1);
 			threads[i] = a;
 		}
 
@@ -65,10 +67,14 @@ public class FileManagement extends Thread {
 		final String FILE_PATH3 = "C:\\Users\\Maintenant Prêt\\Desktop\\ES\\jasml\\decompiler\\JavaClassParser.java";
 		File file3 = new File(FILE_PATH3);
 //		File[] files = new File[1];
-		File[] files = new File[3];
-		files[0] = file;
-		files[1] = file2;
-		files[2] = file3;
+		List<File> files = new ArrayList<File>();
+		//File[] files = new File[3];
+		files.add(file);
+		files.add(file2);
+		files.add(file3);
+		//files[0] = file;
+		//files[1] = file2;
+		//files[2] = file3;
 		int[] smells = new int[5];
 		smells[0] = 1;
 		smells[1] = 1;
