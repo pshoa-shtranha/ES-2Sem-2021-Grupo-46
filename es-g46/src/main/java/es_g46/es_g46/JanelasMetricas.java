@@ -19,7 +19,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import javax.swing.JList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -605,38 +605,28 @@ public class JanelasMetricas {
 		frame_metricas.setLayout(new BorderLayout());
 		frame_metricas.pack();
 		frame_metricas.setLocation(100, 50);
-		frame_metricas.setSize(250, 220);
+		frame_metricas.setSize(500, 500);
 		frame_metricas.setVisible(true);
 	}
 	
 	static void loadRegrasGuardadasWindow() {
-		JLabel label_metricas = new JLabel("Where is the file?");
-		text_metricas = new JTextField(10);
+		
+	      //Creating a File object for directory
+	      File directoryPath = new File("regras/");
+	      //List of all files and directories
+	      String contents[] = directoryPath.list();
+	      System.out.println("List of files and directories in the specified directory:");
+	      for(int i=0; i<contents.length; i++) {
+	         System.out.println(contents[i]);		         
+	}
+	      JList<String> list = new JList<String>();
+	      list.setListData( contents);
+	      
 
-		JPanel frame2 = new JPanel();
-		frame_metricas.add(frame2, BorderLayout.NORTH);
-		frame2.setLayout(new FlowLayout());
+			
+			frame_metricas.add(list);
 
-		frame2.add(label_metricas);
-		frame2.add(text_metricas);
-
-		JPanel frame3 = new JPanel();
-		frame_metricas.add(frame3, BorderLayout.CENTER);
-		frame3.setLayout(new GridLayout(6, 1));
-
-		checkBox1 = new JCheckBox("NOM_class");
-		checkBox2 = new JCheckBox("LOC_class");
-		checkBox3 = new JCheckBox("WMC_class");
-		checkBox4 = new JCheckBox("LOC_method");
-		checkBox5 = new JCheckBox("CYCLO_method");
-
-		frame3.add(checkBox1);
-		frame3.add(checkBox2);
-		frame3.add(checkBox3);
-		frame3.add(checkBox4);
-		frame3.add(checkBox5);
-
-		JButton button20 = new JButton("Check");
+		JButton button20 = new JButton("Submit");
 		button20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// FileManagement fm = new FileManagement(listFiles(), buttonMetricas());
