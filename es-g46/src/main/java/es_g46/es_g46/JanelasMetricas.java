@@ -73,7 +73,7 @@ public class JanelasMetricas {
 	private static JCheckBox checkBox3;
 	private static JCheckBox checkBox4;
 	private static JCheckBox checkBox5;
-
+	private static JList<String> list;
 	private static JTextField text_metricas;
 
 
@@ -619,9 +619,8 @@ public class JanelasMetricas {
 	      for(int i=0; i<contents.length; i++) {
 	         System.out.println(contents[i]);		         
 	}
-	      JList<String> list = new JList<String>();
+	      list = new JList<String>();
 	      list.setListData( contents);
-	      
 
 			
 			frame_metricas.add(list);
@@ -629,7 +628,9 @@ public class JanelasMetricas {
 		JButton button20 = new JButton("Submit");
 		button20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// FileManagement fm = new FileManagement(listFiles(), buttonMetricas());
+				
+				//list.getSelectedValue();
+				System.out.println(list.getSelectedValue());
 			}
 		});
 		frame_metricas.add(button20, BorderLayout.SOUTH);
