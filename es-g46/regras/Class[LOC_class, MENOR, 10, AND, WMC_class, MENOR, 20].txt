@@ -1,0 +1,1 @@
+[LOC_class, <, 10, AND, WMC_class, <, 20]
