@@ -1,4 +1,4 @@
-package es_g46.es_g46;
+package es_g46;
 
 import java.util.List;
 
@@ -13,17 +13,18 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
  * @version 2.0
  */
 
-public class ClassName extends VoidVisitorAdapter<List<String>> {
+public class ClassSize extends VoidVisitorAdapter<List<String>> {
 	
 	/**
-	 * Returns the names of classes of the .java and puts it inside a list
+	 * Returns the sizes of classes of the .java and puts it inside a list
 	 * 
 	 * @param md file .java with the right parser
 	 * @param collector list of strings
 	 */
 	 public void visit(ClassOrInterfaceDeclaration md, List<String> collector) {
 	 super.visit(md, collector);
-	 collector.add(md.getNameAsString());
+	 int number = md.getEnd().get().line - md.getBegin().get().line;
+	 collector.add(String.valueOf(number));
 	 }
 
 }

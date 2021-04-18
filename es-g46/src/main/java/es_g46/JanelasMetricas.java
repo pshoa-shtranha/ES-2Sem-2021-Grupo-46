@@ -1,4 +1,4 @@
-package es_g46.es_g46;
+package es_g46;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

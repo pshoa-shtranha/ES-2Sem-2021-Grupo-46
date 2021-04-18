@@ -1,7 +1,8 @@
-package es_g46.es_g46;
+package es_g46;
 
 import java.util.List;
 
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
@@ -12,17 +13,17 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
  * @version 2.0
  */
 
-public class MethodNameCollector extends VoidVisitorAdapter<List<String>> {
-
+public class ClassName extends VoidVisitorAdapter<List<String>> {
+	
 	/**
-	 * Returns the names of methods of the .java and puts it inside a list
+	 * Returns the names of classes of the .java and puts it inside a list
 	 * 
 	 * @param md file .java with the right parser
 	 * @param collector list of strings
 	 */
-	 public void visit(MethodDeclaration md, List<String> collector) {
+	 public void visit(ClassOrInterfaceDeclaration md, List<String> collector) {
 	 super.visit(md, collector);
-	 collector.add(md.getDeclarationAsString(false, false, false));
+	 collector.add(md.getNameAsString());
 	 }
 
 }
