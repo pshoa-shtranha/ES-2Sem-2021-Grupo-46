@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -26,16 +27,23 @@ import javax.swing.table.DefaultTableModel;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JTextPane;
+import javax.swing.JLabel;
 
 public class GUI {
 
 	private JFrame frame;
 	private JPanel topPanel;
 	private JPanel bottomPanel;
+	private JPanel eastPanel;
 	private JTable table;
 	private void topPanel() {
 
 		topPanel = new JPanel();
+		topPanel.setBackground(Color.WHITE);
 		frame.getContentPane().add(topPanel, BorderLayout.CENTER);
 
 		table = new JTable();
@@ -75,7 +83,10 @@ public class GUI {
 									excelRow.getCell(10) });
 
 						}
-
+						
+						//Adicona o painel do lado direto com informações do projeto
+						
+						extractInfoIntoRightPanel(model);
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block1
 						e1.printStackTrace();
@@ -85,10 +96,10 @@ public class GUI {
 						e2.printStackTrace();
 						JOptionPane.showMessageDialog(null, e2.getMessage());
 					}
-
+					
 				}
 			}
-
+			
 		});
 
 		JButton button1 = new JButton("Import Java Files");
@@ -160,7 +171,8 @@ public class GUI {
 								excelRow.getCell(10) });
 
 					}
-
+					
+					extractInfoIntoRightPanel(model);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block1
 					e1.printStackTrace();
@@ -194,6 +206,7 @@ public class GUI {
 		});
 		
 		bottomPanel = new JPanel();
+		bottomPanel.setBackground(Color.WHITE);
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new FlowLayout());
 
@@ -201,11 +214,21 @@ public class GUI {
 		bottomPanel.add(button1);
 		bottomPanel.add(button2);
 		bottomPanel.add(button3);
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.NORTH);
 	}
 
+	private void eastPanel() {
+		eastPanel = new JPanel();
+		frame.getContentPane().add(eastPanel, BorderLayout.EAST);
+		eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+	}
 	
 	public GUI() {
 		frame = new JFrame("Excel Reader");
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		addFrameContent();
 		frame.pack();
@@ -215,12 +238,59 @@ public class GUI {
 		frame.getContentPane().setLayout(new BorderLayout());
 		topPanel();
 		bottomPanel();
+		eastPanel();
 	}
 	
 	public void open() {
 		frame.setLocation(100, 50);
 		frame.setSize(1050, 500);
 		frame.setVisible(true);
+	}
+
+	private void extractInfoIntoRightPanel(DefaultTableModel model) {
+		String currentPackageName = "";
+		int nPackages = 0;
+		String currentClassName = "";
+		int nClasses = 0;
+		int nMethods = 0;
+		double nLines = 0;
+		for(int i = 0; i < model.getRowCount(); i++) {
+			//calculates number of packages
+			if (model.getValueAt(i, 1)!=null && !model.getValueAt(i, 1).toString().equals(currentPackageName)) {
+				currentPackageName = model.getValueAt(i, 1).toString();
+				nPackages++;
+				
+			}				
+			//calculate number of classes and sum their lines into total number of lines
+			if (model.getValueAt(i, 2)!=null && !model.getValueAt(i, 2).toString().equals(currentClassName) || (model.getValueAt(i, 1)!=null && !model.getValueAt(i, 1).toString().equals(currentPackageName) && model.getValueAt(i, 2).toString().equals(currentClassName))) {
+				currentClassName = model.getValueAt(i, 2).toString();
+				nClasses++;
+				//nLines += Double.parseDouble(model.getValueAt(i, 5).toString());
+				if(model.getValueAt(i, 5)!=null) {
+					nLines += Double.parseDouble(model.getValueAt(i, 5).toString());									
+				}
+			}
+			
+			//Calculate number of methods
+			if (model.getValueAt(i, 3)!=null && model.getValueAt(i, 3)!=null && !model.getValueAt(i, 3).toString().isEmpty()) {
+				nMethods++;
+			}				
+		}
+		
+		eastPanel.removeAll();
+		
+		eastPanel.add(new JLabel("Nº total de packages:"));
+		eastPanel.add(new JLabel(String.valueOf(nPackages)));
+		eastPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		eastPanel.add(new JLabel("Nº total de classes:"));
+		eastPanel.add(new JLabel(String.valueOf(nClasses)));
+		eastPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		eastPanel.add(new JLabel("Nº total de métodos:"));
+		eastPanel.add(new JLabel(String.valueOf(nMethods)));
+		eastPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		eastPanel.add(new JLabel("Nº total de linhas de código:"));
+		eastPanel.add(new JLabel(String.valueOf(nLines)));
+		eastPanel.revalidate();
 	}
 
 	public static void main(String args[]) {
