@@ -9,17 +9,15 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.JList;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -27,11 +25,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class JanelasMetricas {
 	private static JFrame frame_criar_regras;
@@ -45,16 +44,16 @@ public class JanelasMetricas {
 	private static JPanel topPanel_regras2;
 	private static JPanel bottomPanel_regras2;
 	private static JPanel bottomPanel_regras222;
-	private static JComboBox<?> comboBox1;
-	private static JComboBox<?> comboBox2;
-	private static JComboBox<?> comboBox3;
-	private static JComboBox<?> comboBox4;
-	private static JComboBox<?> comboBox5;
-	private static JComboBox<?> comboBox1v2;
-	private static JComboBox<?> comboBox2v2;
-	private static JComboBox<?> comboBox3v2;
-	private static JComboBox<?> comboBox4v2;
-	private static JComboBox<?> comboBox5v2;
+	private static JComboBox<?> comboBox1Name;
+	private static JComboBox<?> comboBox2Sign;
+	private static JComboBox<?> comboBox3Operator;
+	private static JComboBox<?> comboBox4Name2;
+	private static JComboBox<?> comboBox5Sign2;
+	private static JComboBox<?> comboBox1v2Name;
+	private static JComboBox<?> comboBox2v2Sign;
+	private static JComboBox<?> comboBox3v2Operator;
+	private static JComboBox<?> comboBox4v2Name2;
+	private static JComboBox<?> comboBox5v2Sign2;
 	private static JTextField text_regras;
 	private static JTextField text_regras1;
 	private static JTextField text_regrasv2;
@@ -68,13 +67,7 @@ public class JanelasMetricas {
 	private static String[] string_regras;
 	private static String[] string_regras2;
 	private static JFrame frame_metricas;
-	private static JCheckBox checkBox1;
-	private static JCheckBox checkBox2;
-	private static JCheckBox checkBox3;
-	private static JCheckBox checkBox4;
-	private static JCheckBox checkBox5;
 	private static JList<String> list;
-	private static JTextField text_metricas;
 
 
 
@@ -160,21 +153,21 @@ public class JanelasMetricas {
 		String sinais[] = { "<", ">", "=" };
 		String logica[] = { "AND", "OR" };
 
-		comboBox1 = new JComboBox<Object>(opcoes);
-		comboBox2 = new JComboBox<Object>(sinais);
-		comboBox5 = new JComboBox<Object>(logica);
+		comboBox1Name = new JComboBox<Object>(opcoes);
+		comboBox2Sign = new JComboBox<Object>(sinais);
+		comboBox3Operator = new JComboBox<Object>(logica);
 
 		text_regras = new JTextField(10);
 
-		topPanel_regras.add(comboBox1);
-		topPanel_regras.add(comboBox2);
+		topPanel_regras.add(comboBox1Name);
+		topPanel_regras.add(comboBox2Sign);
 		topPanel_regras.add(text_regras);
 
 		middlePanel_regras = new JPanel();
 		frame_criar_regras1.add(middlePanel_regras);
 		middlePanel_regras.setLayout(new FlowLayout());
 
-		middlePanel_regras.add(comboBox5);
+		middlePanel_regras.add(comboBox3Operator);
 
 		// Regra2
 
@@ -182,13 +175,13 @@ public class JanelasMetricas {
 		frame_criar_regras1.add(bottomPanel_regras);
 		bottomPanel_regras.setLayout(new FlowLayout());
 
-		comboBox3 = new JComboBox<Object>(opcoes);
-		comboBox4 = new JComboBox<Object>(sinais);
+		comboBox4Name2 = new JComboBox<Object>(opcoes);
+		comboBox5Sign2 = new JComboBox<Object>(sinais);
 
 		text_regras1 = new JTextField(10);
 
-		bottomPanel_regras.add(comboBox3);
-		bottomPanel_regras.add(comboBox4);
+		bottomPanel_regras.add(comboBox4Name2);
+		bottomPanel_regras.add(comboBox5Sign2);
 		bottomPanel_regras.add(text_regras1);
 
 		bottomPanel_regrasv2 = new JPanel();
@@ -207,10 +200,44 @@ public class JanelasMetricas {
 			}
 		});
 
-		JButton button33v1 = new JButton("Submit");
-		button33.addActionListener(new ActionListener() {
+		JButton submitButton = new JButton("Submit");
+		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// açao do botao
+				String[] stringRegras = new String[7];
+				stringRegras[0] = (String) comboBox1Name.getSelectedItem();
+				stringRegras[1] = (String) comboBox2Sign.getSelectedItem();
+				stringRegras[2] = text_regras.getText();
+				stringRegras[3] = (String) comboBox3Operator.getSelectedItem();
+				stringRegras[4] = (String) comboBox4Name2.getSelectedItem();
+				stringRegras[5] = (String) comboBox5Sign2.getSelectedItem();
+				stringRegras[6] = text_regras1.getText();
+				
+				
+				//Definir modelos para adicionar regras à tabela 2
+				DefaultTableModel excelTModel = (DefaultTableModel) GUI.table.getModel();
+				DefaultTableModel comparisonTModel = (DefaultTableModel) GUI.table2.getModel();
+				
+				//Make table 2 have the same number of rows as table 1, also clears any rows table 2 might've had
+				if (excelTModel.getRowCount() != comparisonTModel.getRowCount()) {
+					comparisonTModel.setRowCount(0);
+					for (int i = 0; i < excelTModel.getRowCount(); i++) {
+						comparisonTModel.addRow(new Object[]{null,null,null,null});
+					}
+				}
+				
+				//Verifica-se onde é que ele vai buscar a informação para comparar
+				int excelTClassCol1;
+				excelTClassCol1 = getColInxOfSelMetric(stringRegras[0]);
+				int excelTClassCol2;
+				excelTClassCol2 = getColInxOfSelMetric(stringRegras[4]);
+				for (int i = 0; i < excelTModel.getRowCount(); i++) {
+					//sets table 2 class name
+					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("class").getModelIndex()), i, 0);
+					//sets table 2 manual god class
+					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_God_Class").getModelIndex()), i, 1);
+					
+					writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 2);
+				}
 			}
 		});
 
@@ -269,32 +296,32 @@ public class JanelasMetricas {
 							    for(int i =0; i<3;i++)
 							    {
 							    	
-							    	String textoDaComboBox1=comboBox1.getItemAt(i).toString();
+							    	String textoDaComboBox1=comboBox1Name.getItemAt(i).toString();
 							   if( textoDaComboBox1.equals(ss[0]))
 							   {						   	
-								   comboBox1.setSelectedIndex(i);}
-							    String textoDaComboBox2=comboBox2.getItemAt(i).toString();
+								   comboBox1Name.setSelectedIndex(i);}
+							    String textoDaComboBox2=comboBox2Sign.getItemAt(i).toString();
 							    if( textoDaComboBox2.equals(ss[1]))
 								   {
-									   comboBox2.setSelectedIndex(i);
+									   comboBox2Sign.setSelectedIndex(i);
 									   }
 							    String textoDaComboBox5="";
 							    if(i<2)
-							    { textoDaComboBox5=comboBox5.getItemAt(i).toString();
+							    { textoDaComboBox5=comboBox3Operator.getItemAt(i).toString();
 							 
 							    if( textoDaComboBox5.equals(ss[3]))
 								   {
-									   comboBox5.setSelectedIndex(i);
+									   comboBox3Operator.setSelectedIndex(i);
 									   }
 							    }
-							    String textoDaComboBox3=comboBox3.getItemAt(i).toString();
+							    String textoDaComboBox3=comboBox4Name2.getItemAt(i).toString();
 								   if( textoDaComboBox3.equals(ss[4]))
 								   {							   	
-									   comboBox3.setSelectedIndex(i);}
-								   String textoDaComboBox4=comboBox4.getItemAt(i).toString();
+									   comboBox4Name2.setSelectedIndex(i);}
+								   String textoDaComboBox4=comboBox5Sign2.getItemAt(i).toString();
 								   if( textoDaComboBox4.equals(ss[5]))
 								   {							   	
-									   comboBox4.setSelectedIndex(i);}
+									   comboBox5Sign2.setSelectedIndex(i);}
 								  
 								   						   	
 									   text_regras.setText(ss[2]);
@@ -330,7 +357,7 @@ public class JanelasMetricas {
 			}
 		});
 		bottomPanel_regrasv2.add(button33);
-		bottomPanel_regrasv2.add(button33v1);
+		bottomPanel_regrasv2.add(submitButton);
 		bottomPanel_regrasv2.add(button33v2);
 	}
 
@@ -345,25 +372,25 @@ public class JanelasMetricas {
 		frame_criar_regras2.add(topPanel_regras2);
 		topPanel_regras2.setLayout(new FlowLayout());
 
-		String opcoes[] = { "LOC_method", "CYCLO_method" };
+		String opcoes[] = { "LOC_method", "CYCLO_Method" };
 		String sinais[] = { "<", ">", "=" };
 		String logica[] = { "AND", "OR" };
 
-		comboBox1v2 = new JComboBox<Object>(opcoes);
-		comboBox2v2 = new JComboBox<Object>(sinais);
-		comboBox5v2 = new JComboBox<Object>(logica);
+		comboBox1v2Name = new JComboBox<Object>(opcoes);
+		comboBox2v2Sign = new JComboBox<Object>(sinais);
+		comboBox3v2Operator = new JComboBox<Object>(logica);
 
 		text_regrasv2 = new JTextField(10);
 
-		topPanel_regras2.add(comboBox1v2);
-		topPanel_regras2.add(comboBox2v2);
+		topPanel_regras2.add(comboBox1v2Name);
+		topPanel_regras2.add(comboBox2v2Sign);
 		topPanel_regras2.add(text_regrasv2);
 
 		middlePanel_regras2 = new JPanel();
 		frame_criar_regras2.add(middlePanel_regras2);
 		middlePanel_regras2.setLayout(new FlowLayout());
 
-		middlePanel_regras2.add(comboBox5v2);
+		middlePanel_regras2.add(comboBox3v2Operator);
 
 		// Regra2
 
@@ -371,13 +398,13 @@ public class JanelasMetricas {
 		frame_criar_regras2.add(bottomPanel_regras2);
 		bottomPanel_regras2.setLayout(new FlowLayout());
 
-		comboBox3v2 = new JComboBox<Object>(opcoes);
-		comboBox4v2 = new JComboBox<Object>(sinais);
+		comboBox4v2Name2 = new JComboBox<Object>(opcoes);
+		comboBox5v2Sign2 = new JComboBox<Object>(sinais);
 
 		text_regras1v2 = new JTextField(10);
 
-		bottomPanel_regras2.add(comboBox3v2);
-		bottomPanel_regras2.add(comboBox4v2);
+		bottomPanel_regras2.add(comboBox4v2Name2);
+		bottomPanel_regras2.add(comboBox5v2Sign2);
 		bottomPanel_regras2.add(text_regras1v2);
 
 		bottomPanel_regras222 = new JPanel();
@@ -390,10 +417,45 @@ public class JanelasMetricas {
 				saveRegras2();
 			}
 		});
-		JButton button33v12 = new JButton("Submit");
-		button33v12.addActionListener(new ActionListener() {
+		JButton submitButton = new JButton("Submit");
+		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// açao do botao
+				String[] stringRegras = new String[7];
+				stringRegras[0] = (String) comboBox1v2Name.getSelectedItem();
+				stringRegras[1] = (String) comboBox2v2Sign.getSelectedItem();
+				stringRegras[2] = text_regrasv2.getText();
+				stringRegras[3] = (String) comboBox3v2Operator.getSelectedItem();
+				stringRegras[4] = (String) comboBox4v2Name2.getSelectedItem();
+				stringRegras[5] = (String) comboBox5v2Sign2.getSelectedItem();
+				stringRegras[6] = text_regras1v2.getText();
+				
+				
+				//Definir modelos para adicionar regras à tabela 2
+				DefaultTableModel excelTModel = (DefaultTableModel) GUI.table.getModel();
+				DefaultTableModel comparisonTModel = (DefaultTableModel) GUI.table2.getModel();
+				
+				//Make table 2 have the same number of rows as table 1, also clears any rows table 2 might've had
+				if (excelTModel.getRowCount() != comparisonTModel.getRowCount()) {
+					comparisonTModel.setRowCount(0);
+					for (int i = 0; i < excelTModel.getRowCount(); i++) {
+						comparisonTModel.addRow(new Object[]{null,null,null,null});
+					}
+				}
+				
+				//Verifica-se onde é que ele vai buscar a informação para comparar
+				int excelTClassCol1;
+				excelTClassCol1 = getColInxOfSelMetric(stringRegras[0]);
+				int excelTClassCol2;
+				excelTClassCol2 = getColInxOfSelMetric(stringRegras[4]);
+				for (int i = 0; i < excelTModel.getRowCount(); i++) {
+					//sets method id on table 2
+					comparisonTModel.setValueAt(i + 1, i, 4);
+					//sets table 2 class name
+					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("method").getModelIndex()), i, 5);
+					//sets table 2 manual god class
+					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_Long_Method").getModelIndex()), i, 6);
+					writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 7);
+				}
 			}
 		});
 		JButton button33v22 = new JButton("Load");
@@ -451,33 +513,33 @@ public class JanelasMetricas {
 							    for(int i =0; i<3;i++)
 							    {
 							    	if(i<2) {	
-							    	String textoDaComboBox1=comboBox1v2.getItemAt(i).toString();
+							    	String textoDaComboBox1=comboBox1v2Name.getItemAt(i).toString();
 							   if( textoDaComboBox1.equals(ss[0]))
 							   {						   	
-								   comboBox1v2.setSelectedIndex(i);}}
-							    String textoDaComboBox2=comboBox2v2.getItemAt(i).toString();
+								   comboBox1v2Name.setSelectedIndex(i);}}
+							    String textoDaComboBox2=comboBox2v2Sign.getItemAt(i).toString();
 							    if( textoDaComboBox2.equals(ss[1]))
 								   {
-									   comboBox2v2.setSelectedIndex(i);
+									   comboBox2v2Sign.setSelectedIndex(i);
 									   }
 							    String textoDaComboBox5="";
 							    if(i<2)
-							    { textoDaComboBox5=comboBox5v2.getItemAt(i).toString();
+							    { textoDaComboBox5=comboBox3v2Operator.getItemAt(i).toString();
 							 
 							    if( textoDaComboBox5.equals(ss[3]))
 								   {
-									   comboBox5v2.setSelectedIndex(i);
+									   comboBox3v2Operator.setSelectedIndex(i);
 									   }
 							    }
 							    if(i<2) {
-							    String textoDaComboBox3=comboBox3v2.getItemAt(i).toString();
+							    String textoDaComboBox3=comboBox4v2Name2.getItemAt(i).toString();
 								   if( textoDaComboBox3.equals(ss[4]))
 								   {							   	
-									   comboBox3v2.setSelectedIndex(i);}}
-								   String textoDaComboBox4=comboBox4v2.getItemAt(i).toString();
+									   comboBox4v2Name2.setSelectedIndex(i);}}
+								   String textoDaComboBox4=comboBox5v2Sign2.getItemAt(i).toString();
 								   if( textoDaComboBox4.equals(ss[5]))
 								   {							   	
-									   comboBox4v2.setSelectedIndex(i);}
+									   comboBox5v2Sign2.setSelectedIndex(i);}
 								  
 								   						   	
 									   text_regrasv2.setText(ss[2]);
@@ -513,7 +575,7 @@ public class JanelasMetricas {
 			}
 		});
 		bottomPanel_regras222.add(button33v2);
-		bottomPanel_regras222.add(button33v12);
+		bottomPanel_regras222.add(submitButton);
 		bottomPanel_regras222.add(button33v22);
 	}
 
@@ -522,12 +584,12 @@ public class JanelasMetricas {
 		string_regras = new String[7];
 
 		for (int i = 0; i < string_regras.length; i++) {
-			string_regras[0] = (String) comboBox1.getSelectedItem();
-			string_regras[1] = (String) comboBox2.getSelectedItem();
+			string_regras[0] = (String) comboBox1Name.getSelectedItem();
+			string_regras[1] = (String) comboBox2Sign.getSelectedItem();
 			string_regras[2] = text_regras.getText();
-			string_regras[3] = (String) comboBox5.getSelectedItem();
-			string_regras[4] = (String) comboBox3.getSelectedItem();
-			string_regras[5] = (String) comboBox4.getSelectedItem();
+			string_regras[3] = (String) comboBox3Operator.getSelectedItem();
+			string_regras[4] = (String) comboBox4Name2.getSelectedItem();
+			string_regras[5] = (String) comboBox5Sign2.getSelectedItem();
 			string_regras[6] = text_regras1.getText();
 		}
 		System.out.println(Arrays.toString(string_regras));		
@@ -564,12 +626,12 @@ public class JanelasMetricas {
 		string_regras2 = new String[7];
 
 		for (int i = 0; i < string_regras2.length; i++) {
-			string_regras2[0] = (String) comboBox1v2.getSelectedItem();
-			string_regras2[1] = (String) comboBox2v2.getSelectedItem();
+			string_regras2[0] = (String) comboBox1v2Name.getSelectedItem();
+			string_regras2[1] = (String) comboBox2v2Sign.getSelectedItem();
 			string_regras2[2] = text_regrasv2.getText();
-			string_regras2[3] = (String) comboBox5v2.getSelectedItem();
-			string_regras2[4] = (String) comboBox3v2.getSelectedItem();
-			string_regras2[5] = (String) comboBox4v2.getSelectedItem();
+			string_regras2[3] = (String) comboBox3v2Operator.getSelectedItem();
+			string_regras2[4] = (String) comboBox4v2Name2.getSelectedItem();
+			string_regras2[5] = (String) comboBox5v2Sign2.getSelectedItem();
 			string_regras2[6] = text_regras1v2.getText();
 		}
 		System.out.println(Arrays.toString(string_regras2));
@@ -634,5 +696,210 @@ public class JanelasMetricas {
 			}
 		});
 		frame_metricas.add(button20, BorderLayout.SOUTH);
+	}
+
+	private static int getColInxOfSelMetric(String stringRegra) {
+		int excelTClassCol1 = -1;
+		if (stringRegra.equals("NOM_class")) {
+			excelTClassCol1 = GUI.table.getColumn("NOM_class").getModelIndex();
+		}
+		else if (stringRegra.equals("LOC_class")) {
+			excelTClassCol1 = GUI.table.getColumn("LOC_class").getModelIndex();
+		}
+		else if(stringRegra.equals("WMC_class")) {
+			excelTClassCol1 = GUI.table.getColumn("WMC_class").getModelIndex();
+		}
+		else if(stringRegra.equals("LOC_method")) {
+			excelTClassCol1 = GUI.table.getColumn("LOC_method").getModelIndex();
+		}
+		else if(stringRegra.equals("CYCLO_Method")) {
+			excelTClassCol1 = GUI.table.getColumn("CYCLO_Method").getModelIndex();
+		}
+		return excelTClassCol1;
+	}
+
+	private static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel, DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row, int col2) {
+		//define table 1 and table 2 columns
+		double t1v1;
+		double t1v2;
+		double v1 = Double.parseDouble(stringRegras[2]);
+		double v2 =Double.parseDouble(stringRegras[6]);
+		
+		if (excelTModel.getValueAt(row, excelTCol1) != null && !excelTModel.getValueAt(row, excelTCol1).toString().equals("")) {
+			t1v1 = Double.parseDouble (excelTModel.getValueAt(row, excelTCol1).toString());
+		}
+		else {
+			t1v1 = 0;
+		}
+		
+		if (excelTModel.getValueAt(row, excelTCol2) != null && !excelTModel.getValueAt(row, excelTCol2).toString().equals("")) {
+			t1v2 = Double.parseDouble (excelTModel.getValueAt(row, excelTCol2).toString());
+		}
+		else {
+			t1v2 = 0;
+		}
+		
+		
+		//sets table 2 generated field
+		if(stringRegras[3].equals("AND")) {
+			if(stringRegras[1].equals(">")) {
+				if(stringRegras[5].equals(">")) {
+					if(t1v1 > v1 && t1v2 > v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("<")) {
+					if(t1v1 > v1 && t1v2 < v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("=")) {
+					if(t1v1 > v1 && t1v2 == v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+			}
+			else if(stringRegras[1].equals("<")) {
+				if(stringRegras[5].equals(">")) {
+					if(t1v1 < v1 && t1v2 > v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("<")) {
+					if(t1v1 < v1 && t1v2 < v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("=")) {
+					if(t1v1 < v1 && t1v2 == v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+			}
+			else if(stringRegras[1].equals("=")) {
+				if(stringRegras[5].equals(">")) {
+					if(t1v1 == v1 && t1v2 > v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("<")) {
+					if(t1v1 == v1 && t1v2 < v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("=")) {
+					if(t1v1 == v1 && t1v2 == v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+			}
+		}
+		else if(stringRegras[3].equals("OR")) {
+			if(stringRegras[1].equals(">")) {
+				if(stringRegras[5].equals(">")) {
+					if(t1v1 > v1 || t1v2 > v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("<")) {
+					if(t1v1 > v1 || t1v2 < v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("=")) {
+					if(t1v1 > v1 || t1v2 == v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+			}
+			else if(stringRegras[1].equals("<")) {
+				if(stringRegras[5].equals(">")) {
+					if(t1v1 < v1 || t1v2 > v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("<")) {
+					if(t1v1 < v1 || t1v2 < v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("=")) {
+					if(t1v1 < v1 || t1v2 == v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+			}
+			else if(stringRegras[1].equals("=")) {
+				if(stringRegras[5].equals(">")) {
+					if(t1v1 == v1 || t1v2 > v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("<")) {
+					if(t1v1 == v1 || t1v2 < v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+				else if(stringRegras[5].equals("=")) {
+					if(t1v1 == v1 || t1v2 == v2) {
+						comparisonTModel.setValueAt("TRUE", row, col2);
+					}
+					else {
+						comparisonTModel.setValueAt("FALSE", row, col2);
+					}
+				}
+			}
+		}
 	}
 }
