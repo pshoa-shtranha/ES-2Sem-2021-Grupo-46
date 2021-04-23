@@ -26,13 +26,11 @@ public class UsefulMethods {
 	 * 
 	 * @throws FileNotFoundException If a file was not found
 	 * @throws IOException if an I/O exception of some sort has occurred
-	 * 
 	 * @param excelFileChooser JFileChooser to select the file thats is going to be an excel sheet
-	 * 
 	 * @return XSSFSheet an excel sheet
 	 */
 
-	static XSSFSheet generateExcelSheet(JFileChooser excelFileChooser) throws FileNotFoundException, IOException {
+	public static XSSFSheet generateExcelSheet(JFileChooser excelFileChooser) throws FileNotFoundException, IOException {
 		File excelFile;
 		FileInputStream excelFIS;
 		BufferedInputStream excelBIS;
@@ -52,7 +50,7 @@ public class UsefulMethods {
 	 * @param files List of files .java to be chosen from
 	 */
 
-	static void listJavaFiles(String directoryName, List<File> files) {
+	public static void listJavaFiles(String directoryName, List<File> files) {
 		File directory = new File(directoryName);
 
 		// Get all files from a directory.
