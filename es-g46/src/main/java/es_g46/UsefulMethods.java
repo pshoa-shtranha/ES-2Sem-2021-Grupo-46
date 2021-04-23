@@ -22,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class UsefulMethods {
 	
 	/**
-	 *Returns an excel sheet  
+	 * Returns an excel sheet  
 	 * 
 	 * @throws FileNotFoundException If a file was not found
 	 * @throws IOException if an I/O exception of some sort has occurred

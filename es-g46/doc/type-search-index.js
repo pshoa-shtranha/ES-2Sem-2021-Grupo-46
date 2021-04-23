@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"es_g46","l":"FileManagement"},{"p":"es_g46","l":"GUI"},{"p":"es_g46","l":"JanelasMetricas"},{"p":"es_g46","l":"UsefulMethods"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"es_g46","l":"FileManagement"},{"p":"es_g46","l":"GUI"}];updateSearchResults();

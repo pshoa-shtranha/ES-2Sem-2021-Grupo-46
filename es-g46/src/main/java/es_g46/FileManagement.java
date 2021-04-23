@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Class that test the program
- * A path is chosen and is writen in the excel
+ * A path is chosen and is written in the excel
  * 
  * @author Luis Santos
  * @version 2.0
@@ -63,15 +63,7 @@ public class FileManagement extends Thread {
 		
 	}
 	
-	/**
-	 * Returns the place where the excel is insert to
-	 * 
-	 * @throws InterruptedException if the thread is interrupted
-	 * @throws IOException an I/O exception of some sort has occurred
-	 * 
-	 *@param args array of String
-	 */
-	
+/*
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		//classe para testar o programa
@@ -104,15 +96,15 @@ public class FileManagement extends Thread {
 		FileManagement a = new FileManagement(files, smells, excelDir, "jasml");
 		System.out.println("A pesquisa no ficheiro terminou!");
 
-	}
+	}*/
 	
 	/**
 	 * Method that writes directly in the excel
 	 * The project is named
 	 *
-	 *@param board headquarters of String thats gonna show the board
-	 *@param excelDir String of where are the excel directorys
-	 *@param nameProject string with the name of the project
+	 * @param board headquarters of String thats going to show the sheet
+	 * @param excelDir String of where are the excel directories
+	 * @param nameProject string with the name of the project
 	 */
 	
 	public void writeExcel(String[][] board, String excelDir, String nameProject) {
