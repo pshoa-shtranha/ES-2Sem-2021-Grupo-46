@@ -405,8 +405,8 @@ public class JanelasMetricas {
 	 * It has some spaces that need to be filled by the user to create the rules
 	 * Those spaces consist in all the classes available, logic signs and the limits
 	 * 3 buttons to save, upload or submit the rules chosen
-	 * Button save has the functionality of saving rules in a file and in the portofolio "regras"
-	 * Button load has the functionality of let the people select a file from the portfolio "regras" and filled the spaces
+	 * Button save has the functionality of saving rules in a file and in the pastes "rules"
+	 * Button load has the functionality of let the people select a file from the pastes "rules" and filled the spaces
 	 * Button submit has the functionality of execute the rules
 	 * 
 	 */

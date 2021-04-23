@@ -51,7 +51,7 @@ public class GUI {
 	static JTable table2;
 
 	/**
-	 * Method executed in fuction addFrameContent()
+	 * Method executed in function addFrameContent()
 	 * Creates a table where it can present a excel sheet
 	 * Creates a table to compare code smells
 	 * 
@@ -88,7 +88,7 @@ public class GUI {
 	}
 	
 	/**
-	 * Method executed in fuction addFrameContent()
+	 * Method executed in function addFrameContent()
 	 * Creates a button to import excel
 	 * Creates another button to import java files
 	 * Creates a third button to create a rule
@@ -255,7 +255,7 @@ public class GUI {
 	}
 	
 	/**
-	 * Method executed in fuction addFrameContent()
+	 * Method executed in function addFrameContent()
 	 * set the layout of the panel located on the east side of the panel
 	 * 
 	 */

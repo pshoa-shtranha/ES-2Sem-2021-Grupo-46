@@ -46,11 +46,10 @@ public class UsefulMethods {
 	}
 	
 	/**
-	 *Method get all the files from a directory
+	 * Method get all the files from a directory
 	 * 
 	 * @param directoryName String with the directory
 	 * @param files List of files .java to be chosen from
-	 * 
 	 */
 
 	static void listJavaFiles(String directoryName, List<File> files) {
