@@ -32,6 +32,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Class that creates the windows when a button is pushed
+ * 
+ * @author Margarida Correia , Pavlo and Beatriz Patricio
+ * @version 2.0
+ */
+
 public class JanelasMetricas {
 	private static JFrame frame_criar_regras;
 	private static JFrame frame_criar_regras1;
@@ -70,7 +77,11 @@ public class JanelasMetricas {
 	private static JList<String> list;
 
 
-
+	/**
+	 * Returns a window when the button of create rules is pushed
+	 * 
+	 */
+	
 	// janela de quando se carrega no botao "criar regras"
 	public static void gui_criar_regras() {
 
@@ -81,6 +92,13 @@ public class JanelasMetricas {
 		frame_criar_regras.setSize(250, 140);
 		frame_criar_regras.setVisible(true);
 	}
+	
+	/**
+	 * Creates the initial layout of the frame
+	 * It´s added 2 radio buttons to choose the next window to open
+	 * It´s added a button to check to open the window
+	 * 
+	 */
 	
 	static void loadCriarRegrasWindow() {
 		radio_buttons = new ButtonGroup();
@@ -116,6 +134,11 @@ public class JanelasMetricas {
 		frame_criar_regras.add(button30);
 	}
 	
+	/**
+	 * Returns a new window when the option chosen in the initial window was "class"
+	 * 
+	 */
+	
 	// janela abre qd se escolhe opçao de class
 	public static void gui_regra1() {
 
@@ -126,6 +149,11 @@ public class JanelasMetricas {
 		frame_criar_regras1.setSize(350, 320);
 		frame_criar_regras1.setVisible(true);
 	}
+	
+	/**
+	 * Returns a new window when the option chosen in the initial window was "method"
+	 * 
+	 */
 
 	// janela abre qd se escolhe opçao de method
 	public static void gui_regra2() {
@@ -137,6 +165,17 @@ public class JanelasMetricas {
 		frame_criar_regras2.setSize(350, 320);
 		frame_criar_regras2.setVisible(true);
 	}
+	
+	/**
+	 * Layout of the frame chosen as "class"
+	 * It has some spaces that need to be filled by the user to create the rules
+	 * Those spaces consist in all the classes available, logic signs and the limits
+	 * 3 buttons to save, upload or submit the rules chosen
+	 * Button save has the functionality of saving rules in a file and in the portofolio "regras"
+	 * Button load has the functionality of let the people select a file from the portfolio "regras" and filled the spaces
+	 * Button submit has the functionality of execute the rules
+	 * 
+	 */
 	
 	// Janelas do defenir regras
 	private static void frameRegra1() {
@@ -360,6 +399,17 @@ public class JanelasMetricas {
 		bottomPanel_regrasv2.add(submitButton);
 		bottomPanel_regrasv2.add(button33v2);
 	}
+	
+	/**
+	 * Layout of the frame chosen as "method"
+	 * It has some spaces that need to be filled by the user to create the rules
+	 * Those spaces consist in all the classes available, logic signs and the limits
+	 * 3 buttons to save, upload or submit the rules chosen
+	 * Button save has the functionality of saving rules in a file and in the portofolio "regras"
+	 * Button load has the functionality of let the people select a file from the portfolio "regras" and filled the spaces
+	 * Button submit has the functionality of execute the rules
+	 * 
+	 */
 
 	private static void frameRegra2() {
 
@@ -579,6 +629,16 @@ public class JanelasMetricas {
 		bottomPanel_regras222.add(button33v22);
 	}
 
+	/**
+	 * Save the rules chosen in the frame "class"
+	 * 
+	 * @throws UnsupportedEncodingException if the Character Encoding is not supported
+	 * @throws FileNotFoundException If a file was not found
+	 * @throws IOexception if an I/O exception of some sort has occurred
+	 * 
+	 * @return Array of Strings includes the saved rules 
+	 */
+	
 	// retorna um array de String com as regras criadas
 	private static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		string_regras = new String[7];
@@ -621,6 +681,12 @@ public class JanelasMetricas {
 		
 		return string_regras;
 	}
+	
+	/**
+	 * Save the rules chosen in the frame "method"
+	 * 
+	 * @return Array of Strings includes the saved rules 
+	 */
 
 	private static String[] saveRegras2() {
 		string_regras2 = new String[7];
@@ -659,6 +725,10 @@ public class JanelasMetricas {
 		return string_regras2;
 	}
 
+	/**
+	 * Returns a window when the button of saved rules is pushed
+	 * 
+	 */
 	
 	// janela de quando se carrega no botao "regras guardadas"
 	public static void gui_metricas() {
@@ -670,6 +740,12 @@ public class JanelasMetricas {
 		frame_metricas.setSize(500, 500);
 		frame_metricas.setVisible(true);
 	}
+	
+	/**
+	 * Load the saved rules into a list of files is a specified directory
+	 * Creation of a button "Submit"
+	 * 
+	 */
 	
 	static void loadRegrasGuardadasWindow() {
 		
@@ -698,6 +774,14 @@ public class JanelasMetricas {
 		frame_metricas.add(button20, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Returns the number of the column of the metric chosen
+	 * 
+	 * @param stringRegra string of rules
+	 * 
+	 * @return int includes the number of the column
+	 */
+	
 	private static int getColInxOfSelMetric(String stringRegra) {
 		int excelTClassCol1 = -1;
 		if (stringRegra.equals("NOM_class")) {
@@ -718,6 +802,19 @@ public class JanelasMetricas {
 		return excelTClassCol1;
 	}
 
+	/**
+	 * Method defines 2 tables columns and go get their values
+	 * the table 2 generates field is set
+	 * 
+	 * @param excelTModel default table model
+	 * @param comparisonTModel default table model
+	 * @param stringRegras array of Strings with all the rules
+	 * @param excelTCol1 int
+	 * @param excelTCol2 int
+	 * @param row int number of rows
+	 * @param col2 int
+	 */
+	
 	private static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel, DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row, int col2) {
 		//define table 1 and table 2 columns
 		double t1v1;

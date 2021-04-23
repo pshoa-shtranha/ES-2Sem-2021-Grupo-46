@@ -34,6 +34,13 @@ import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
+/**
+ * Class that opens the window showing all the buttons that have functionalites attached to them
+ * 
+ * @author Margarida Correia and Pavlo
+ * @version 2.0
+ */
+
 public class GUI {
 
 	private JFrame frame;
@@ -43,6 +50,13 @@ public class GUI {
 	static JTable table;
 	static JTable table2;
 
+	/**
+	 * Method executed in fuction addFrameContent()
+	 * Creates a table where it can present a excel sheet
+	 * Creates a table to compare code smells
+	 * 
+	 */
+	
 	private void topPanel() {
 
 		topPanel = new JPanel();
@@ -72,6 +86,15 @@ public class GUI {
 		tabbedPane.addTab("Comparação de code smells", null, table2ScrollPane, null);
 
 	}
+	
+	/**
+	 * Method executed in fuction addFrameContent()
+	 * Creates a button to import excel
+	 * Creates another button to import java files
+	 * Creates a third button to create a rule
+	 * Creates the last button to choose the saved rules
+	 * 
+	 */
 
 	private void bottomPanel() {
 
@@ -230,12 +253,23 @@ public class GUI {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 	}
+	
+	/**
+	 * Method executed in fuction addFrameContent()
+	 * set the layout of the panel located on the east side of the panel
+	 * 
+	 */
 
 	private void eastPanel() {
 		eastPanel = new JPanel();
 		frame.getContentPane().add(eastPanel, BorderLayout.EAST);
 		eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
 	}
+	
+	/**
+	 * Method creates the main frame
+	 * 
+	 */
 
 	public GUI() {
 		frame = new JFrame("Excel Reader");
@@ -245,6 +279,11 @@ public class GUI {
 		addFrameContent();
 		frame.pack();
 	}
+	
+	/**
+	 * Method joins the 3 panels in the main frame
+	 * 
+	 */
 
 	private void addFrameContent() {
 		frame.getContentPane().setLayout(new BorderLayout());
@@ -252,12 +291,24 @@ public class GUI {
 		bottomPanel();
 		eastPanel();
 	}
+	
+	/**
+	 * Method turns visible the main frame
+	 * 
+	 */
 
 	public void open() {
 		frame.setLocation(100, 50);
 		frame.setSize(1050, 500);
 		frame.setVisible(true);
 	}
+	
+	/**
+	 * Method extract all the information from the right panel
+	 * The information consist in the number of packages, classes, methods and number of lines
+	 * 
+	 * @param model default table model
+	 */
 
 	private void extractInfoIntoRightPanel(DefaultTableModel model) {
 		String currentPackageName = "";
@@ -308,6 +359,13 @@ public class GUI {
 		eastPanel.revalidate();
 	}
 
+	/**
+	 * Returns the result from this class
+	 * The result is the main frame
+	 * 
+	 * @param args array of strings
+	 */
+	
 	public static void main(String args[]) {
 		GUI gui = new GUI();
 		gui.open();
