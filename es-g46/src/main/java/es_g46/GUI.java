@@ -57,7 +57,7 @@ public class GUI {
 	 * 
 	 */
 	
-	public void topPanel() {
+	private void topPanel() {
 
 		topPanel = new JPanel();
 		topPanel.setBackground(Color.WHITE);
@@ -96,7 +96,7 @@ public class GUI {
 	 * 
 	 */
 
-	public void bottomPanel() {
+	private void bottomPanel() {
 
 		JButton button0 = new JButton("Import Excel");
 		button0.addActionListener(new ActionListener() {
@@ -310,7 +310,7 @@ public class GUI {
 	 * @param model default table model
 	 */
 
-	public void extractInfoIntoRightPanel(DefaultTableModel model) {
+	private void extractInfoIntoRightPanel(DefaultTableModel model) {
 		String currentPackageName = "";
 		int nPackages = 0;
 		String currentClassName = "";

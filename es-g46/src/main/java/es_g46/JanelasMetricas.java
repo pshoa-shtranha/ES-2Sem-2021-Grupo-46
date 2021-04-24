@@ -274,8 +274,10 @@ public class JanelasMetricas {
 					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("class").getModelIndex()), i, 0);
 					//sets table 2 manual god class
 					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_God_Class").getModelIndex()), i, 1);
-					
+					//sets table 2 auto-generated god class
 					writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 2);
+					//set verdadeiros positivos and stuff for Class 
+					setDetectionQualityInCell2(comparisonTModel, i, 1, 2, 3);
 				}
 			}
 		});
@@ -411,7 +413,7 @@ public class JanelasMetricas {
 	 * 
 	 */
 
-	public static void frameRegra2() {
+	private static void frameRegra2() {
 
 		label_regras1 = new JLabel("");
 		frame_criar_regras2.add(label_regras1);
@@ -505,6 +507,8 @@ public class JanelasMetricas {
 					//sets table 2 manual god class
 					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_Long_Method").getModelIndex()), i, 6);
 					writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 7);
+					//set verdadeiros positivos and stuff for Method
+					setDetectionQualityInCell2(comparisonTModel, i, 6, 7, 8);
 				}
 			}
 		});
@@ -640,7 +644,7 @@ public class JanelasMetricas {
 	 */
 	
 	// retorna um array de String com as regras criadas
-	public static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
+	private static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		string_regras = new String[7];
 
 		for (int i = 0; i < string_regras.length; i++) {
@@ -688,7 +692,7 @@ public class JanelasMetricas {
 	 * @return Array of Strings includes the saved rules 
 	 */
 
-	public static String[] saveRegras2() {
+	private static String[] saveRegras2() {
 		string_regras2 = new String[7];
 
 		for (int i = 0; i < string_regras2.length; i++) {
@@ -747,7 +751,7 @@ public class JanelasMetricas {
 	 * 
 	 */
 	
-	public static void loadRegrasGuardadasWindow() {
+	static void loadRegrasGuardadasWindow() {
 		
 	      //Creating a File object for directory
 	      File directoryPath = new File("regras/");
@@ -782,7 +786,7 @@ public class JanelasMetricas {
 	 * @return int includes the number of the column
 	 */
 	
-	public static int getColInxOfSelMetric(String stringRegra) {
+	private static int getColInxOfSelMetric(String stringRegra) {
 		int excelTClassCol1 = -1;
 		if (stringRegra.equals("NOM_class")) {
 			excelTClassCol1 = GUI.table.getColumn("NOM_class").getModelIndex();
@@ -815,7 +819,7 @@ public class JanelasMetricas {
 	 * @param col2 int
 	 */
 	
-	public static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel, DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row, int col2) {
+	private static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel, DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row, int col2) {
 		//define table 1 and table 2 columns
 		double t1v1;
 		double t1v2;
@@ -996,6 +1000,24 @@ public class JanelasMetricas {
 						comparisonTModel.setValueAt("FALSE", row, col2);
 					}
 				}
+			}
+		}
+	}
+	
+	private static void setDetectionQualityInCell2(DefaultTableModel comparisonTModel, int row, int c1, int c2, int c3) {
+		if(comparisonTModel.getValueAt(row, c1) != null && comparisonTModel.getValueAt(row, c2) != null && 
+				!comparisonTModel.getValueAt(row, c1).toString().equals("") && !comparisonTModel.getValueAt(row, c2).toString().equals("")) {
+			if(comparisonTModel.getValueAt(row, c1).toString().equals("TRUE") && comparisonTModel.getValueAt(row, c2).toString().equals("TRUE")) {
+				comparisonTModel.setValueAt("VP", row, c3);
+			}
+			else if(comparisonTModel.getValueAt(row, c1).toString().equals("TRUE") && comparisonTModel.getValueAt(row, c2).toString().equals("FALSE")) {
+				comparisonTModel.setValueAt("FN", row, c3);
+			}
+			else if(comparisonTModel.getValueAt(row, c1).toString().equals("FALSE") && comparisonTModel.getValueAt(row, c2).toString().equals("TRUE")) {
+				comparisonTModel.setValueAt("FP", row, c3);
+			}
+			else if(comparisonTModel.getValueAt(row, c1).toString().equals("FALSE") && comparisonTModel.getValueAt(row, c2).toString().equals("FALSE")) {
+				comparisonTModel.setValueAt("VN", row, c3);
 			}
 		}
 	}
