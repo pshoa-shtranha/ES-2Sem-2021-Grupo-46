@@ -433,7 +433,7 @@ public class JanelasMetricas {
 	 * 
 	 */
 
-	private static void frameRegra2() {
+	public static void frameRegra2() {
 
 		label_regras1 = new JLabel("");
 		frame_criar_regras2.add(label_regras1);
@@ -676,7 +676,7 @@ public class JanelasMetricas {
 	 */
 	
 	// retorna um array de String com as regras criadas
-	private static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
+	public static String[] saveRegras() throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		string_regras = new String[7];
 
 		for (int i = 0; i < string_regras.length; i++) {
@@ -724,7 +724,7 @@ public class JanelasMetricas {
 	 * @return Array of Strings includes the saved rules 
 	 */
 
-	private static String[] saveRegras2() {
+	public static String[] saveRegras2() {
 		string_regras2 = new String[7];
 
 		for (int i = 0; i < string_regras2.length; i++) {
@@ -783,7 +783,7 @@ public class JanelasMetricas {
 	 * 
 	 */
 	
-	static void loadRegrasGuardadasWindow() {
+	public static void loadRegrasGuardadasWindow() {
 		
 	      //Creating a File object for directory
 	      File directoryPath = new File("regras/");
@@ -819,7 +819,7 @@ public class JanelasMetricas {
 	 * @return int includes the number of the column
 	 */
 	
-	private static int getColInxOfSelMetric(String stringRegra) {
+	public static int getColInxOfSelMetric(String stringRegra) {
 		int excelTClassCol1 = -1;
 		if (stringRegra.equals("NOM_class")) {
 			excelTClassCol1 = GUI.table.getColumn("NOM_class").getModelIndex();
@@ -852,7 +852,7 @@ public class JanelasMetricas {
 	 * @param col2 int
 	 */
 	
-	private static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel, DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row, int col2) {
+	public static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel, DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row, int col2) {
 		//define table 1 and table 2 columns
 		double t1v1;
 		double t1v2;
@@ -1037,7 +1037,18 @@ public class JanelasMetricas {
 		}
 	}
 	
-	private static void setDetectionQualityInCell2(DefaultTableModel comparisonTModel, int row, int c1, int c2, int c3) {
+	/**
+	 * Method to set the detection quality that we encounter in cell2
+	 * Through the values of "true" and "false" is defined the correct value in the row
+	 * 
+	 * @param comparisonTModel default table model
+	 * @param row int
+	 * @param c1 int
+	 * @param c2 int
+	 * @param c3 int
+	 */
+	
+	public static void setDetectionQualityInCell2(DefaultTableModel comparisonTModel, int row, int c1, int c2, int c3) {
 		if(comparisonTModel.getValueAt(row, c1) != null && comparisonTModel.getValueAt(row, c2) != null && 
 				!comparisonTModel.getValueAt(row, c1).toString().equals("") && !comparisonTModel.getValueAt(row, c2).toString().equals("")) {
 			if(comparisonTModel.getValueAt(row, c1).toString().equals("TRUE") && comparisonTModel.getValueAt(row, c2).toString().equals("TRUE")) {
