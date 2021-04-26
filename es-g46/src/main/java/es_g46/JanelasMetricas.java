@@ -1,6 +1,7 @@
 package es_g46;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -88,6 +89,7 @@ public class JanelasMetricas {
 		frame_criar_regras = new JFrame("Defenir regras");
 		frame_criar_regras.setLayout(new GridLayout(3, 0));
 		frame_criar_regras.pack();
+	//	frame_criar_regras.getContentPane().setBackground(Color.WHITE);
 		frame_criar_regras.setLocation(100, 50);
 		frame_criar_regras.setSize(250, 140);
 		frame_criar_regras.setVisible(true);
@@ -103,14 +105,17 @@ public class JanelasMetricas {
 	public static void loadCriarRegrasWindow() {
 		radio_buttons = new ButtonGroup();
 		radio_button = new JRadioButton("Class");
+		radio_button.setBackground(Color.WHITE);
 		radio_buttons.add(radio_button);
 		radio_button1 = new JRadioButton("Method");
+		radio_button1.setBackground(Color.WHITE);
 		radio_buttons.add(radio_button1);
 
 		frame_criar_regras.add(radio_button);
 		frame_criar_regras.add(radio_button1);
 
 		JButton button30 = new JButton("Check");
+		button30.setBackground(Color.white);
 		button30.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -148,6 +153,8 @@ public class JanelasMetricas {
 		frame_criar_regras1.setLocation(100, 50);
 		frame_criar_regras1.setSize(350, 320);
 		frame_criar_regras1.setVisible(true);
+		frame_criar_regras1.getContentPane().setBackground(Color.WHITE);
+		
 	}
 	
 	/**
@@ -164,6 +171,7 @@ public class JanelasMetricas {
 		frame_criar_regras2.setLocation(100, 50);
 		frame_criar_regras2.setSize(350, 320);
 		frame_criar_regras2.setVisible(true);
+		frame_criar_regras2.getContentPane().setBackground(Color.WHITE);
 	}
 	
 	/**
@@ -185,6 +193,7 @@ public class JanelasMetricas {
 
 		frame_criar_regras1.add(label_regras1v2);
 		topPanel_regras = new JPanel();
+		topPanel_regras.setBackground(Color.WHITE);
 		frame_criar_regras1.add(topPanel_regras);
 		topPanel_regras.setLayout(new FlowLayout());
 
@@ -195,6 +204,9 @@ public class JanelasMetricas {
 		comboBox1Name = new JComboBox<Object>(opcoes);
 		comboBox2Sign = new JComboBox<Object>(sinais);
 		comboBox3Operator = new JComboBox<Object>(logica);
+		comboBox1Name.setBackground(Color.WHITE);
+		comboBox2Sign.setBackground(Color.WHITE);
+		comboBox3Operator.setBackground(Color.WHITE);
 
 		text_regras = new JTextField(10);
 
@@ -203,6 +215,7 @@ public class JanelasMetricas {
 		topPanel_regras.add(text_regras);
 
 		middlePanel_regras = new JPanel();
+		middlePanel_regras.setBackground(Color.WHITE);
 		frame_criar_regras1.add(middlePanel_regras);
 		middlePanel_regras.setLayout(new FlowLayout());
 
@@ -211,11 +224,14 @@ public class JanelasMetricas {
 		// Regra2
 
 		bottomPanel_regras = new JPanel();
+		bottomPanel_regras.setBackground(Color.WHITE);
 		frame_criar_regras1.add(bottomPanel_regras);
 		bottomPanel_regras.setLayout(new FlowLayout());
 
 		comboBox4Name2 = new JComboBox<Object>(opcoes);
 		comboBox5Sign2 = new JComboBox<Object>(sinais);
+		comboBox4Name2.setBackground(Color.WHITE);
+		comboBox5Sign2.setBackground(Color.WHITE);
 
 		text_regras1 = new JTextField(10);
 
@@ -224,10 +240,12 @@ public class JanelasMetricas {
 		bottomPanel_regras.add(text_regras1);
 
 		bottomPanel_regrasv2 = new JPanel();
+		bottomPanel_regrasv2.setBackground(Color.WHITE);
 		frame_criar_regras1.add(bottomPanel_regrasv2);
 		bottomPanel_regrasv2.setLayout(new FlowLayout());
 
 		JButton button33 = new JButton("Save");
+		button33.setBackground(Color.WHITE);
 		button33.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -240,6 +258,7 @@ public class JanelasMetricas {
 		});
 
 		JButton submitButton = new JButton("Submit");
+		submitButton.setBackground(Color.WHITE);
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String[] stringRegras = new String[7];
@@ -283,6 +302,7 @@ public class JanelasMetricas {
 		});
 
 		JButton button33v2 = new JButton("Load");
+		button33v2.setBackground(Color.WHITE);
 		button33v2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File FicheirosTXT;
@@ -421,6 +441,7 @@ public class JanelasMetricas {
 		// Regra1
 
 		topPanel_regras2 = new JPanel();
+		topPanel_regras2.setBackground(Color.WHITE);
 		frame_criar_regras2.add(topPanel_regras2);
 		topPanel_regras2.setLayout(new FlowLayout());
 
@@ -431,6 +452,9 @@ public class JanelasMetricas {
 		comboBox1v2Name = new JComboBox<Object>(opcoes);
 		comboBox2v2Sign = new JComboBox<Object>(sinais);
 		comboBox3v2Operator = new JComboBox<Object>(logica);
+		comboBox1v2Name.setBackground(Color.WHITE);
+		comboBox2v2Sign.setBackground(Color.WHITE);
+		comboBox3v2Operator.setBackground(Color.WHITE);
 
 		text_regrasv2 = new JTextField(10);
 
@@ -439,6 +463,7 @@ public class JanelasMetricas {
 		topPanel_regras2.add(text_regrasv2);
 
 		middlePanel_regras2 = new JPanel();
+		middlePanel_regras2.setBackground(Color.WHITE);
 		frame_criar_regras2.add(middlePanel_regras2);
 		middlePanel_regras2.setLayout(new FlowLayout());
 
@@ -447,11 +472,14 @@ public class JanelasMetricas {
 		// Regra2
 
 		bottomPanel_regras2 = new JPanel();
+		bottomPanel_regras2.setBackground(Color.WHITE);
 		frame_criar_regras2.add(bottomPanel_regras2);
 		bottomPanel_regras2.setLayout(new FlowLayout());
 
 		comboBox4v2Name2 = new JComboBox<Object>(opcoes);
 		comboBox5v2Sign2 = new JComboBox<Object>(sinais);
+		comboBox4v2Name2.setBackground(Color.WHITE);
+		comboBox5v2Sign2.setBackground(Color.WHITE);
 
 		text_regras1v2 = new JTextField(10);
 
@@ -460,16 +488,19 @@ public class JanelasMetricas {
 		bottomPanel_regras2.add(text_regras1v2);
 
 		bottomPanel_regras222 = new JPanel();
+		bottomPanel_regras222.setBackground(Color.WHITE);
 		frame_criar_regras2.add(bottomPanel_regras222);
 		bottomPanel_regras222.setLayout(new FlowLayout());
 
 		JButton button33v2 = new JButton("Save");
+		button33v2.setBackground(Color.WHITE);
 		button33v2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				saveRegras2();
 			}
 		});
 		JButton submitButton = new JButton("Submit");
+		submitButton.setBackground(Color.WHITE);
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String[] stringRegras = new String[7];
@@ -513,6 +544,7 @@ public class JanelasMetricas {
 			}
 		});
 		JButton button33v22 = new JButton("Load");
+		button33v22.setBackground(Color.WHITE);
 		button33v22.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File FicheirosTXT;
@@ -768,6 +800,7 @@ public class JanelasMetricas {
 			frame_metricas.add(list);
 
 		JButton button20 = new JButton("Submit");
+		button20.setBackground(Color.WHITE);
 		button20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

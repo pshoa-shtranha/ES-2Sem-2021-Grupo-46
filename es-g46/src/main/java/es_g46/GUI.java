@@ -99,6 +99,7 @@ public class GUI {
 	private void bottomPanel() {
 
 		JButton button0 = new JButton("Import Excel");
+		button0.setBackground(Color.WHITE);
 		button0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String defaultCurrentDirectoryPath = "src/";
@@ -140,6 +141,7 @@ public class GUI {
 		});
 
 		JButton button1 = new JButton("Import Java Files");
+		button1.setBackground(Color.WHITE);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<File> files = new ArrayList<File>();
@@ -222,6 +224,7 @@ public class GUI {
 		});
 
 		JButton button2 = new JButton("Criar regra");
+		button2.setBackground(Color.WHITE);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -232,6 +235,7 @@ public class GUI {
 		});
 
 		JButton button3 = new JButton("Regras guardadas");
+		button3.setBackground(Color.WHITE);
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JanelasMetricas.gui_metricas();
