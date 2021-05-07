@@ -1,1 +1,0 @@
-[LOC_method, <, 2, AND, CYCLO_method, <, 1]

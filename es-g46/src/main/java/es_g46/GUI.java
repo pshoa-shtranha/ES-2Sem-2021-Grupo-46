@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,6 +50,8 @@ public class GUI {
 	private JPanel eastPanel;
 	static JTable table;
 	static JTable table2;
+	static JTextArea eastPClassTextArea;
+	static JTextArea eastPMethodTextArea;
 
 	/**
 	 * Method executed in function addFrameContent()
@@ -108,6 +111,10 @@ public class GUI {
 				// if import button is clicked
 				if (excelChooser == JFileChooser.APPROVE_OPTION) {
 					try {
+						//Clear table with code smells when importing
+						DefaultTableModel comparisonTModel = (DefaultTableModel) table2.getModel();
+						comparisonTModel.setRowCount(0);
+						
 						XSSFSheet excelSheet = UsefulMethods.generateExcelSheet(excelFileChooser);
 						// Looping through excel columns and rows (comeÃ§a na 2a fila)
 						DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -153,6 +160,10 @@ public class GUI {
 				fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				int chooser = fileChooser.showOpenDialog(null);
 				if (chooser == JFileChooser.APPROVE_OPTION) {
+					//Clear table with code smells when importing
+					DefaultTableModel comparisonTModel = (DefaultTableModel) table2.getModel();
+					comparisonTModel.setRowCount(0);
+					
 					ficheiroPath = fileChooser.getSelectedFile().getAbsolutePath();
 					ficheirosJava = new File(ficheiroPath);
 					if (ficheirosJava.isDirectory()) {
@@ -167,58 +178,58 @@ public class GUI {
 					} else if (ficheirosJava.isFile()) {
 						System.out.println("Ã‰ um ficheiro");
 					}
-				}
-				int[] smells = new int[5];
-				smells[0] = 1;
-				smells[1] = 1;
-				smells[2] = 1;
-				smells[3] = 1;
-				smells[4] = 1;
-				String project = fileChooser.getSelectedFile().getName();
-				System.out.println(project);
-				File directory = new File("metricas");
-				if (!directory.exists())
-					directory.mkdir();
-				String excelDir = "metricas/";
-				try {
-					FileManagement a = new FileManagement(files, smells, excelDir, project);
-				} catch (IOException i) {
-
-					i.printStackTrace();
-				}
-				StringBuilder location = new StringBuilder();
-				location.append(excelDir);
-				location.append(project);
-				location.append("_metrics.xlsx");
-				try {
-					FileInputStream excelFIS = new FileInputStream(location.toString());
-					BufferedInputStream excelBIS = new BufferedInputStream(excelFIS);
-					XSSFWorkbook excelJtableImport = new XSSFWorkbook(excelBIS);
-					XSSFSheet excelSheet = excelJtableImport.getSheetAt(0);
-					// Looping through excel columns and rows (comeÃ§a na 2a fila)
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					model.setRowCount(0);
-					for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-						XSSFRow excelRow = excelSheet.getRow(row);
-						// DefaultTableModel model = (DefaultTableModel) table.getModel();
-						// model.fireTableRowsDeleted(0, model.getColumnCount());
-						// adding row to the table
-						// model.setRowCount(0);
-						model.addRow(new Object[] { excelRow.getCell(0), excelRow.getCell(1), excelRow.getCell(2),
-								excelRow.getCell(3), excelRow.getCell(4), excelRow.getCell(5), excelRow.getCell(6),
-								excelRow.getCell(7), excelRow.getCell(8), excelRow.getCell(9), excelRow.getCell(10) });
-
+					int[] smells = new int[5];
+					smells[0] = 1;
+					smells[1] = 1;
+					smells[2] = 1;
+					smells[3] = 1;
+					smells[4] = 1;
+					String project = fileChooser.getSelectedFile().getName();
+					System.out.println(project);
+					File directory = new File("metricas");
+					if (!directory.exists())
+						directory.mkdir();
+					String excelDir = "metricas/";
+					try {
+						FileManagement a = new FileManagement(files, smells, excelDir, project);
+					} catch (IOException i) {
+						
+						i.printStackTrace();
 					}
-
-					extractInfoIntoRightPanel(model);
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block1
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, e1.getMessage());
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block2
-					e2.printStackTrace();
-					JOptionPane.showMessageDialog(null, e2.getMessage());
+					StringBuilder location = new StringBuilder();
+					location.append(excelDir);
+					location.append(project);
+					location.append("_metrics.xlsx");
+					try {
+						FileInputStream excelFIS = new FileInputStream(location.toString());
+						BufferedInputStream excelBIS = new BufferedInputStream(excelFIS);
+						XSSFWorkbook excelJtableImport = new XSSFWorkbook(excelBIS);
+						XSSFSheet excelSheet = excelJtableImport.getSheetAt(0);
+						// Looping through excel columns and rows (comeÃ§a na 2a fila)
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						model.setRowCount(0);
+						for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
+							XSSFRow excelRow = excelSheet.getRow(row);
+							// DefaultTableModel model = (DefaultTableModel) table.getModel();
+							// model.fireTableRowsDeleted(0, model.getColumnCount());
+							// adding row to the table
+							// model.setRowCount(0);
+							model.addRow(new Object[] { excelRow.getCell(0), excelRow.getCell(1), excelRow.getCell(2),
+									excelRow.getCell(3), excelRow.getCell(4), excelRow.getCell(5), excelRow.getCell(6),
+									excelRow.getCell(7), excelRow.getCell(8), excelRow.getCell(9), excelRow.getCell(10) });
+							
+						}
+						
+						extractInfoIntoRightPanel(model);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block1
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block2
+						e2.printStackTrace();
+						JOptionPane.showMessageDialog(null, e2.getMessage());
+					}
 				}
 			}
 		});
@@ -348,7 +359,6 @@ public class GUI {
 		}
 
 		eastPanel.removeAll();
-
 		eastPanel.add(new JLabel("Nº total de packages:"));
 		eastPanel.add(new JLabel(String.valueOf(nPackages)));
 		eastPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -360,6 +370,23 @@ public class GUI {
 		eastPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		eastPanel.add(new JLabel("Nº total de linhas de código:"));
 		eastPanel.add(new JLabel(String.valueOf(nLines)));
+		eastPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		
+		JTabbedPane indicadoresAcertoTextoPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		eastPClassTextArea = new JTextArea("");
+		eastPClassTextArea.setEditable(false);
+		JScrollPane classScrollPanel = new JScrollPane(eastPClassTextArea);
+		indicadoresAcertoTextoPane.addTab("Class Indicators", null, classScrollPanel, null);
+		
+		eastPMethodTextArea = new JTextArea("");
+		eastPMethodTextArea.setEditable(false);
+		JScrollPane methodScrollPanel = new JScrollPane(eastPMethodTextArea);
+		indicadoresAcertoTextoPane.addTab("Method Indicators", null, methodScrollPanel, null);
+		
+		eastPanel.add(indicadoresAcertoTextoPane);
+		
+		eastPanel.setPreferredSize(new Dimension(300, eastPanel.getPreferredSize().height));
 		eastPanel.revalidate();
 	}
 

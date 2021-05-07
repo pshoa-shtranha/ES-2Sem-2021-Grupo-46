@@ -271,33 +271,7 @@ public class JanelasMetricas {
 				stringRegras[6] = text_regras1.getText();
 				
 				
-				//Definir modelos para adicionar regras à tabela 2
-				DefaultTableModel excelTModel = (DefaultTableModel) GUI.table.getModel();
-				DefaultTableModel comparisonTModel = (DefaultTableModel) GUI.table2.getModel();
-				
-				//Make table 2 have the same number of rows as table 1, also clears any rows table 2 might've had
-				if (excelTModel.getRowCount() != comparisonTModel.getRowCount()) {
-					comparisonTModel.setRowCount(0);
-					for (int i = 0; i < excelTModel.getRowCount(); i++) {
-						comparisonTModel.addRow(new Object[]{null,null,null,null});
-					}
-				}
-				
-				//Verifica-se onde é que ele vai buscar a informação para comparar
-				int excelTClassCol1;
-				excelTClassCol1 = getColInxOfSelMetric(stringRegras[0]);
-				int excelTClassCol2;
-				excelTClassCol2 = getColInxOfSelMetric(stringRegras[4]);
-				for (int i = 0; i < excelTModel.getRowCount(); i++) {
-					//sets table 2 class name
-					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("class").getModelIndex()), i, 0);
-					//sets table 2 manual god class
-					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_God_Class").getModelIndex()), i, 1);
-					//sets table 2 auto-generated god class
-					writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 2);
-					//set verdadeiros positivos and stuff for Class 
-					setDetectionQualityInCell2(comparisonTModel, i, 1, 2, 3);
-				}
+				submitClassRule(stringRegras);
 			}
 		});
 
@@ -513,34 +487,7 @@ public class JanelasMetricas {
 				stringRegras[6] = text_regras1v2.getText();
 				
 				
-				//Definir modelos para adicionar regras à tabela 2
-				DefaultTableModel excelTModel = (DefaultTableModel) GUI.table.getModel();
-				DefaultTableModel comparisonTModel = (DefaultTableModel) GUI.table2.getModel();
-				
-				//Make table 2 have the same number of rows as table 1, also clears any rows table 2 might've had
-				if (excelTModel.getRowCount() != comparisonTModel.getRowCount()) {
-					comparisonTModel.setRowCount(0);
-					for (int i = 0; i < excelTModel.getRowCount(); i++) {
-						comparisonTModel.addRow(new Object[]{null,null,null,null});
-					}
-				}
-				
-				//Verifica-se onde é que ele vai buscar a informação para comparar
-				int excelTClassCol1;
-				excelTClassCol1 = getColInxOfSelMetric(stringRegras[0]);
-				int excelTClassCol2;
-				excelTClassCol2 = getColInxOfSelMetric(stringRegras[4]);
-				for (int i = 0; i < excelTModel.getRowCount(); i++) {
-					//sets method id on table 2
-					comparisonTModel.setValueAt(i + 1, i, 4);
-					//sets table 2 class name
-					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("method").getModelIndex()), i, 5);
-					//sets table 2 manual god class
-					comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_Long_Method").getModelIndex()), i, 6);
-					writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 7);
-					//set verdadeiros positivos and stuff for Method
-					setDetectionQualityInCell2(comparisonTModel, i, 6, 7, 8);
-				}
+				submitMethodRule(stringRegras);
 			}
 		});
 		JButton button33v22 = new JButton("Load");
@@ -740,12 +687,12 @@ public class JanelasMetricas {
 		File directory = new File("regras");
 	    if (! directory.exists())
 	        directory.mkdir();
-		 try{
+		try{
 		        String nomeFicheiro= Arrays.toString(string_regras2);
 				if(nomeFicheiro.contains("<"))
 				nomeFicheiro = nomeFicheiro.replace("<", "MENOR");
 				if(nomeFicheiro.contains(">"))
-					nomeFicheiro = nomeFicheiro.replace("<", "MAIOR");
+					nomeFicheiro = nomeFicheiro.replace(">", "MAIOR");
 		        Writer output = null;
 		        File file = new File("regras/"+"Method"+ nomeFicheiro+ ".txt");
 		        output = new BufferedWriter(new FileWriter(file));
@@ -755,9 +702,9 @@ public class JanelasMetricas {
 		        output.close();
 		        System.out.println("File has been written");
 
-		    }catch(Exception e){
-		        System.out.println("Could not create file");
-		    }
+		}catch(Exception e){
+			System.out.println("Could not create file");
+		}
 		return string_regras2;
 	}
 
@@ -806,6 +753,27 @@ public class JanelasMetricas {
 				
 				//list.getSelectedValue();
 				System.out.println(list.getSelectedValue());
+				String[] s1 = list.getSelectedValue().split("\\[");
+				String sType = s1[0];
+				String s2 = s1[1].split("\\]")[0];
+				
+				//replace letters with symbols
+				if(s2.contains("MENOR"))
+					s2 = s2.replace("MENOR", "<");
+				if(s2.contains("MAIOR"))
+					s2 = s2.replace("MAIOR", ">");
+				
+				String[] string_regras = s2.split(", ");
+				for(int i = 0; i < 7; i++) {
+					System.out.println(string_regras[i]);
+				}
+				if(sType.equals("Class")) {
+					submitClassRule(string_regras);
+				}
+				else if(sType.equals("Method")) {
+					submitMethodRule(string_regras);
+				}
+				
 			}
 		});
 		frame_metricas.add(button20, BorderLayout.SOUTH);
@@ -1062,6 +1030,97 @@ public class JanelasMetricas {
 			}
 			else if(comparisonTModel.getValueAt(row, c1).toString().equals("FALSE") && comparisonTModel.getValueAt(row, c2).toString().equals("FALSE")) {
 				comparisonTModel.setValueAt("VN", row, c3);
+			}
+		}
+	}
+
+	private static void submitClassRule(String[] stringRegras) {
+		//Definir modelos para adicionar regras à tabela 2
+		DefaultTableModel excelTModel = (DefaultTableModel) GUI.table.getModel();
+		DefaultTableModel comparisonTModel = (DefaultTableModel) GUI.table2.getModel();
+		
+		//Make table 2 have the same number of rows as table 1, also clears any rows table 2 might've had
+		if (excelTModel.getRowCount() != comparisonTModel.getRowCount()) {
+			comparisonTModel.setRowCount(0);
+			for (int i = 0; i < excelTModel.getRowCount(); i++) {
+				comparisonTModel.addRow(new Object[]{null,null,null,null});
+			}
+		}
+		
+		//Verifica-se onde é que ele vai buscar a informação para comparar
+		int excelTClassCol1;
+		excelTClassCol1 = getColInxOfSelMetric(stringRegras[0]);
+		int excelTClassCol2;
+		excelTClassCol2 = getColInxOfSelMetric(stringRegras[4]);
+		for (int i = 0; i < excelTModel.getRowCount(); i++) {
+			//sets table 2 class name
+			comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("class").getModelIndex()), i, 0);
+			//sets table 2 manual god class
+			comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_God_Class").getModelIndex()), i, 1);
+			//sets table 2 auto-generated god class
+			writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 2);
+			//set verdadeiros positivos and stuff for Class 
+			setDetectionQualityInCell2(comparisonTModel, i, 1, 2, 3);
+			//set verdadeiros positivos and stuff in text in class indicator text tab
+			if(comparisonTModel.getValueAt(i, 0) != null && comparisonTModel.getValueAt(i, 3) != null &&
+					!comparisonTModel.getValueAt(i, 0).toString().equals("") && !comparisonTModel.getValueAt(i, 3).toString().equals("")) {				
+				String lastClass = "";
+				String currentClass;
+				String currentIndicator;
+				if (i > 0) {
+					lastClass = comparisonTModel.getValueAt(i-1, 0).toString();
+				}
+				
+				currentClass = comparisonTModel.getValueAt(i, 0).toString();
+				if (!currentClass.equals(lastClass)) {
+					currentIndicator = comparisonTModel.getValueAt(i, 3).toString();
+					GUI.eastPClassTextArea.append(currentClass + ": " + currentIndicator + "\n");
+				}
+			}
+		}
+	}
+	
+	private static void submitMethodRule(String[] stringRegras) {
+		//Definir modelos para adicionar regras à tabela 2
+		DefaultTableModel excelTModel = (DefaultTableModel) GUI.table.getModel();
+		DefaultTableModel comparisonTModel = (DefaultTableModel) GUI.table2.getModel();
+		
+		//Make table 2 have the same number of rows as table 1, also clears any rows table 2 might've had
+		if (excelTModel.getRowCount() != comparisonTModel.getRowCount()) {
+			comparisonTModel.setRowCount(0);
+			for (int i = 0; i < excelTModel.getRowCount(); i++) {
+				comparisonTModel.addRow(new Object[]{null,null,null,null});
+			}
+		}
+		
+		//Verifica-se onde é que ele vai buscar a informação para comparar
+		int excelTClassCol1;
+		excelTClassCol1 = getColInxOfSelMetric(stringRegras[0]);
+		int excelTClassCol2;
+		excelTClassCol2 = getColInxOfSelMetric(stringRegras[4]);
+		for (int i = 0; i < excelTModel.getRowCount(); i++) {
+			//sets method id on table 2
+			comparisonTModel.setValueAt(i + 1, i, 4);
+			//sets table 2 class name
+			comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("method").getModelIndex()), i, 5);
+			//sets table 2 manual god class
+			comparisonTModel.setValueAt(excelTModel.getValueAt(i, GUI.table.getColumn("is_Long_Method").getModelIndex()), i, 6);
+			
+			writeGeneratedCodeSmellToComparisonTable(excelTModel, comparisonTModel, stringRegras, excelTClassCol1, excelTClassCol2, i, 7);
+			//set verdadeiros positivos and stuff for Method
+			setDetectionQualityInCell2(comparisonTModel, i, 6, 7, 8);
+			//set verdadeiros positivos and stuff in method indicator text tab
+			if(comparisonTModel.getValueAt(i, 4) != null && comparisonTModel.getValueAt(i, 5) != null && comparisonTModel.getValueAt(i, 8) != null &&
+					!comparisonTModel.getValueAt(i, 4).toString().equals("") && !comparisonTModel.getValueAt(i, 5).toString().equals("") && 
+					!comparisonTModel.getValueAt(i, 8).toString().equals("")) {
+				String currentMethodID;
+				String currentMethodName;
+				String currentIndicator;
+				
+				currentMethodID = comparisonTModel.getValueAt(i, 4).toString();
+				currentMethodName = comparisonTModel.getValueAt(i, 5).toString();
+				currentIndicator = comparisonTModel.getValueAt(i, 8).toString();
+				GUI.eastPMethodTextArea.append(currentMethodID + " - " + currentMethodName + ": " + currentIndicator + "\n");				
 			}
 		}
 	}
