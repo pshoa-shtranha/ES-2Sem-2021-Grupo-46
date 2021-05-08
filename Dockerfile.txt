@@ -1,0 +1,2 @@
+FROM lalss
+CMD echo "HELLO WORLD"
