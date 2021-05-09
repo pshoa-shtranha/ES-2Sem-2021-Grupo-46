@@ -1,0 +1,214 @@
+God_class antes do tratamento do código
+
+es_g46.GUI	[es_g46.GUI::javax.swing.JFrame frame, es_g46.GUI::addFrameContent():void, es_g46.GUI::javax.swing.JPanel topPanel, es_g46.GUI::topPanel():void, es_g46.GUI::javax.swing.JPanel eastPanel, es_g46.GUI::extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel):void, es_g46.GUI::eastPanel():void, es_g46.GUI::open():void, es_g46.GUI::main(java.lang.String[]):void]
+es_g46.GUI	[es_g46.GUI::javax.swing.JFrame frame, es_g46.GUI::addFrameContent():void, es_g46.GUI::javax.swing.JPanel topPanel, es_g46.GUI::topPanel():void]
+
+Long_method antes do tratamento do código
+
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	eastPanel	B1	0/39
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	eastPanel	B2	0/33
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	eastPanel	B10	0/22
+es_g46.MethodCyclicCollector	public sealed void visit(com.github.javaparser.ast.body.MethodDeclaration, List<java.lang.String>) 	count	B1	0/28
+es_g46.JanelasMetricas	public static void frameRegra1() 	bottomPanel_regrasv2	B1	0/25
+es_g46.JanelasMetricas	public static void frameRegra2() 	bottomPanel_regras222	B1	0/25
+es_g46.GUI	public void bottomPanel() 	bottomPanel	B1	0/19
+es_g46.JanelasMetricas	public static void frameRegra1() 	button33v2	B1	0/18
+es_g46.JanelasMetricas	public static void frameRegra2() 	button33v22	B1	0/18
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	wb	B1	0/12
+es_g46.GUI	public void topPanel() 	topPanel	B1	0/11
+es_g46.JanelasMetricas	public static void loadCriarRegrasWindow() 	frame_criar_regras	B1	0/10
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	indicadoresAcertoTextoPane	B10	0/9
+es_g46.GUI	public void topPanel() 	tabbedPane	B1	0/9
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B1	0/9
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B21	0/8
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	output	B6	0/9
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	output	B8	0/6
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	output	B10	0/4
+es_g46.UsefulMethods	public static org.apache.poi.xssf.usermodel.XSSFSheet generateExcelSheet(javax.swing.JFileChooser) throws java.io.FileNotFoundException, java.io.IOException	excelJtableImport	B1	0/8
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	output	B6	0/8
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	output	B8	0/5
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	output	B10	0/3
+es_g46.JanelasMetricas	public static void loadCriarRegrasWindow() 	button30	B1	0/7
+es_g46.JanelasMetricas	public static void loadCriarRegrasWindow() 	radio_buttons	B1	0/7
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B1	0/7
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B21	0/6
+es_g46.JanelasMetricas	public static void gui_regra1() 	frame_criar_regras1	B1	0/6
+es_g46.JanelasMetricas	public static void gui_regra2() 	frame_criar_regras2	B1	0/6
+es_g46.UsefulMethods	public static org.apache.poi.xssf.usermodel.XSSFSheet generateExcelSheet(javax.swing.JFileChooser) throws java.io.FileNotFoundException, java.io.IOException	excelBIS	B1	0/6
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	file	B6	0/6
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	file	B8	0/3
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	nomeFicheiro	B6	0/5
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	nomeFicheiro	B6	0/5
+es_g46.JanelasMetricas	public static void writeGeneratedCodeSmellToComparisonTable(javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel, java.lang.String[], int, int, int, int) 	t1v1	B1	0/4
+es_g46.UsefulMethods	public static org.apache.poi.xssf.usermodel.XSSFSheet generateExcelSheet(javax.swing.JFileChooser) throws java.io.FileNotFoundException, java.io.IOException	excelFIS	B1	0/4
+es_g46.UsefulMethods	public static org.apache.poi.xssf.usermodel.XSSFSheet generateExcelSheet(javax.swing.JFileChooser) throws java.io.FileNotFoundException, java.io.IOException	excelFIS	B1	0/4
+es_g46.JanelasMetricas	public static void writeGeneratedCodeSmellToComparisonTable(javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel, java.lang.String[], int, int, int, int) 	t1v2	B1	0/4
+es_g46.JanelasMetricas	public static void writeGeneratedCodeSmellToComparisonTable(javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel, java.lang.String[], int, int, int, int) 	t1v2	B4	0/3
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	columnContent	B10	0/3
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	directory	B4	0/3
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras2() 	directory	B4	0/3
+es_g46.OneFile	public java.lang.String getClassName() 	size	B1	0/3
+es_g46.OneFile	public java.lang.String getClassSize() 	size	B1	0/3
+es_g46.OneFile	public java.lang.String getPackageName() 	reader	B1	0/3
+es_g46.OneFile	public java.lang.String getCyclicClass() 	count	B2	0/3
+es_g46.OneFile	public java.lang.String getCyclicClass() 	count	B3	0/2
+es_g46.JanelasMetricas	private static void submitClassRule(java.lang.String[]) 	lastClass	B8	0/3
+es_g46.GUI	public void eastPanel() 	eastPanel	B1	0/2
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	eastPClassTextArea	B10	0/2
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	eastPMethodTextArea	B10	0/2
+es_g46.GUI	public void topPanel() 	table	B1	0/2
+es_g46.GUI	public void topPanel() 	table2	B1	0/2
+es_g46.JanelasMetricas	public static void loadCriarRegrasWindow() 	radio_button	B1	0/2
+es_g46.JanelasMetricas	public static void loadCriarRegrasWindow() 	radio_button1	B1	0/2
+es_g46.JanelasMetricas	public static void loadRegrasGuardadasWindow() 	frame_metricas	B1	2/9
+es_g46.JanelasMetricas	public static void loadRegrasGuardadasWindow() 	frame_metricas	B4	0/7
+es_g46.JanelasMetricas	public static void loadRegrasGuardadasWindow() 	button20	B1	2/7
+es_g46.JanelasMetricas	public static void loadRegrasGuardadasWindow() 	button20	B4	0/5
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nMethods	B1	1/4
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nMethods	B2	1/3
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nMethods	B8	0/2
+es_g46.JanelasMetricas	public static void loadRegrasGuardadasWindow() 	list	B1	2/4
+es_g46.JanelasMetricas	public static void loadRegrasGuardadasWindow() 	list	B4	0/2
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	output	B6	5/10
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	output	B8	2/7
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	output	B10	0/5
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	output	B6	5/9
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	output	B8	2/6
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	output	B10	0/4
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	file	B6	5/7
+es_g46.JanelasMetricas	public static java.lang.String[] saveRegras() throws java.io.UnsupportedEncodingException, java.io.FileNotFoundException, java.io.IOException	file	B8	2/4
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nLines	B1	7/10
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nLines	B2	5/7
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nLines	B3	3/5
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nLines	B5	1/3
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nLines	B6	0/2
+es_g46.JanelasMetricas	private static void submitClassRule(java.lang.String[]) 	currentIndicator	B8	6/8
+es_g46.JanelasMetricas	private static void submitClassRule(java.lang.String[]) 	currentIndicator	B10	2/3
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nPackages	B1	4/6
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nPackages	B2	3/4
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nPackages	B3	1/2
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nClasses	B1	7/9
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nClasses	B2	5/6
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nClasses	B3	3/4
+es_g46.GUI	public void extractInfoIntoRightPanel(javax.swing.table.DefaultTableModel) 	nClasses	B5	1/2
+
+
+Long_method depois do tratamento do código
+
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	panel	B1	0/37
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	panel	B2	0/31
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	panel	B10	0/20
+es_g46.MethodCyclicCollector	public sealed void visit(com.github.javaparser.ast.body.MethodDeclaration, List<java.lang.String>) 	count	B1	0/28
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	wb	B1	0/12
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B1	0/9
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B21	0/8
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	indicadoresAcertoTextoPane	B10	0/7
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B1	0/7
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	fout	B21	0/6
+es_g46.EssentialMethodsForGUI	public static void importExcelFile(java.io.File, javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel) 	tableModel	B1	0/6
+es_g46.EssentialMethodsForGUI	public static void importJavaFiles(java.io.File, javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel) 	smells	B7	0/6
+es_g46.EssentialMethodsForGUI	static org.apache.poi.xssf.usermodel.XSSFSheet generateExcelSheet(java.io.File) throws java.io.FileNotFoundException, java.io.IOException	excelJtableImport	B1	0/6
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	nomeFicheiro	B3	0/5
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	nomeFicheiro	B3	0/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	textoDaComboBox5	B18	0/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	textoDaComboBox5	B19	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	textoDaComboBox5	B19	0/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	textoDaComboBox5	B20	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void writeGeneratedCodeSmellToComparisonTable(javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel, java.lang.String[], int, int, int, int) 	t1v1	B1	0/4
+es_g46.EssentialMethodsForGUI	static org.apache.poi.xssf.usermodel.XSSFSheet generateExcelSheet(java.io.File) throws java.io.FileNotFoundException, java.io.IOException	excelBIS	B1	0/4
+es_g46.EssentialJanelasMetricasMethods	public static void writeGeneratedCodeSmellToComparisonTable(javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel, java.lang.String[], int, int, int, int) 	t1v2	B1	0/4
+es_g46.EssentialJanelasMetricasMethods	public static void writeGeneratedCodeSmellToComparisonTable(javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel, java.lang.String[], int, int, int, int) 	t1v2	B4	0/3
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	directory	B1	0/3
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	directory	B1	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	directory	B1	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	directory	B1	0/3
+es_g46.EssentialMethodsForGUI	public static void importJavaFiles(java.io.File, javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel) 	directory	B7	0/3
+es_g46.FileManagement	public void writeExcel(java.lang.String[][], java.lang.String, java.lang.String) 	columnContent	B10	0/3
+es_g46.OneFile	public java.lang.String getClassName() 	size	B1	0/3
+es_g46.OneFile	public java.lang.String getClassSize() 	size	B1	0/3
+es_g46.OneFile	public java.lang.String getPackageName() 	reader	B1	0/3
+es_g46.OneFile	public java.lang.String getCyclicClass() 	count	B2	0/3
+es_g46.OneFile	public java.lang.String getCyclicClass() 	count	B3	0/2
+es_g46.EssentialJanelasMetricasMethods	public static void submitClassRule(javax.swing.JTable, javax.swing.JTable, java.lang.String[], javax.swing.JTextArea) 	lastClass	B8	0/3
+es_g46.EssentialMethodsForGUI	public static void importJavaFiles(java.io.File, javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel) 	model	B7	2/15
+es_g46.EssentialMethodsForGUI	public static void importJavaFiles(java.io.File, javax.swing.table.DefaultTableModel, javax.swing.table.DefaultTableModel) 	model	B9	1/14
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nMethods	B1	1/4
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nMethods	B2	1/3
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nMethods	B8	0/2
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	output	B3	1/11
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	output	B5	1/8
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	output	B7	1/6
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4v2Name2	B12	9/13
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4v2Name2	B13	1/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4v2Name2	B22	0/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4v2Name2	B23	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3Operator	B12	9/14
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3Operator	B13	1/6
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3Operator	B18	0/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3Operator	B19	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3v2Operator	B12	9/14
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3v2Operator	B13	1/6
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3v2Operator	B19	0/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox3v2Operator	B20	0/3
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	output	B3	1/10
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	output	B5	1/7
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	output	B7	1/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox5Sign2	B12	9/12
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox5Sign2	B13	1/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox5Sign2	B23	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox5v2Sign2	B12	9/12
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox5v2Sign2	B13	1/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox5v2Sign2	B25	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4Name2	B12	9/12
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4Name2	B13	1/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox4Name2	B21	0/3
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	file	B3	1/8
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	file	B5	1/5
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras2(java.lang.String[]) 	file	B7	1/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1v2Name	B12	9/13
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1v2Name	B13	1/5
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1v2Name	B14	0/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1v2Name	B15	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox2Sign	B12	9/12
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox2Sign	B13	1/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox2Sign	B16	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox2v2Sign	B12	9/12
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox2v2Sign	B13	1/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox2v2Sign	B17	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	br	B9	1/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	br	B9	1/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1Name	B12	9/12
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1Name	B13	1/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	comboBox1Name	B14	0/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	ss	B12	3/8
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	ss	B12	3/8
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	output	B3	6/11
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	output	B5	3/8
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	output	B7	1/6
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	output	B3	6/10
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	output	B5	3/7
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	output	B7	1/5
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nLines	B1	7/10
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nLines	B2	5/7
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nLines	B3	3/5
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nLines	B5	1/3
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nLines	B6	0/2
+es_g46.EssentialJanelasMetricasMethods	public static void submitClassRule(javax.swing.JTable, javax.swing.JTable, java.lang.String[], javax.swing.JTextArea) 	currentIndicator	B8	6/8
+es_g46.EssentialJanelasMetricasMethods	public static void submitClassRule(javax.swing.JTable, javax.swing.JTable, java.lang.String[], javax.swing.JTextArea) 	currentIndicator	B10	2/3
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras1(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	fileChooser	B3	2/4
+es_g46.EssentialJanelasMetricasMethods	public static void loadRegras2(JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, JComboBox<?>, javax.swing.JTextField, javax.swing.JTextField) 	fileChooser	B3	2/4
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	file	B3	6/8
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	file	B5	3/5
+es_g46.EssentialJanelasMetricasMethods	public static java.lang.String[] saveRegras(java.lang.String[]) 	file	B7	1/3
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nPackages	B1	4/6
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nPackages	B2	3/4
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nPackages	B3	1/2
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nClasses	B1	7/9
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nClasses	B2	5/6
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nClasses	B3	3/4
+es_g46.EssentialMethodsForGUI	public static void extractInfoIntoPanel(javax.swing.table.DefaultTableModel, javax.swing.JPanel, javax.swing.JTextArea, javax.swing.JTextArea) 	nClasses	B5	1/2
+
+
+God_class depois do tratamento do código
+
+0 code smells
