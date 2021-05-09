@@ -124,6 +124,8 @@ public class GUI {
 					DefaultTableModel comparisonTModel = (DefaultTableModel) table2.getModel();
 					EssentialMethodsForGUI.importJavaFiles(file, tModel, comparisonTModel);
 					// Adicona o painel do lado direto com informações do projeto
+					eastPClassTextArea = new JTextArea("");
+					eastPMethodTextArea = new JTextArea("");
 					EssentialMethodsForGUI.extractInfoIntoPanel(tModel, eastPanel, eastPClassTextArea, eastPMethodTextArea);
 				}
 			}
