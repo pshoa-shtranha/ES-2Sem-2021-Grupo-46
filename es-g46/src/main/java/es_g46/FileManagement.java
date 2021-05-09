@@ -30,7 +30,7 @@ public class FileManagement extends Thread {
 	private String nameProject;
 	
 
-	FileManagement(List<File> files, int[] id, String excelDir, String nameProject) throws IOException {
+	public FileManagement(List<File> files, int[] id, String excelDir, String nameProject) throws IOException {
 		
 		this.id = id;
 		this.files = files;
