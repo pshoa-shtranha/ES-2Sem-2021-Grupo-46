@@ -31,6 +31,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class EssentialMethodsForGUI {
 	
+	/**
+	 * The table is cleared and then import the excel file
+	 * 
+	 * @param excelFile file of the excel sheet
+	 * @param tableModel default table model
+	 * @param comparisonTModel default table model
+	 */
 
 	public static void importExcelFile(File excelFile, DefaultTableModel tableModel, DefaultTableModel comparisonTModel) {
 		try {
@@ -60,7 +67,14 @@ public class EssentialMethodsForGUI {
 			JOptionPane.showMessageDialog(null, e2.getMessage());
 		}
 	}
-		
+	
+	/**
+	 * The table is cleared and then import the java file
+	 * 
+	 * @param file file
+	 * @param model default table model
+	 * @param comparisonTModel default table model
+	 */
 
 	public static void importJavaFiles(File file, DefaultTableModel model, DefaultTableModel comparisonTModel) {
 		File ficheirosJava;
@@ -132,8 +146,17 @@ public class EssentialMethodsForGUI {
 			JOptionPane.showMessageDialog(null, e2.getMessage());
 		}
 	}
-
 	
+	/**
+	 * Method extracts the information and add them to the panel
+	 * This informations consist in the total number of packages, classes, methods and lines of coding
+	 * 
+	 * @param model default table model
+	 * @param panel panel where the information is added
+	 * @param classTextArea text area
+	 * @param methodTextArea text area
+	 */
+
 	public static void extractInfoIntoPanel(DefaultTableModel model, JPanel panel, JTextArea classTextArea, JTextArea methodTextArea) {
 		String currentPackageName = "";
 		int nPackages = 0;
@@ -206,7 +229,7 @@ public class EssentialMethodsForGUI {
 	 * @return XSSFSheet an excel sheet
 	 */
 	
-	static XSSFSheet generateExcelSheet(File excelFile) throws FileNotFoundException, IOException {
+	public static XSSFSheet generateExcelSheet(File excelFile) throws FileNotFoundException, IOException {
 		FileInputStream excelFIS;
 		BufferedInputStream excelBIS;
 		XSSFWorkbook excelJtableImport;
@@ -224,7 +247,7 @@ public class EssentialMethodsForGUI {
 	 * @param files List of files .java to be chosen from
 	 */
 
-	static void listJavaFiles(String directoryName, List<File> files) {
+	public static void listJavaFiles(String directoryName, List<File> files) {
 		File directory = new File(directoryName);
 
 		// Get all files from a directory.

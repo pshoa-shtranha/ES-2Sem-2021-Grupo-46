@@ -21,7 +21,21 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Class that returns all the information that came from the class "JanelasMetricas" and creates tables with that information
+ * 
+ * @author g46
+ * @version 2.0
+ */
+
 public class EssentialJanelasMetricasMethods {
+	
+	/**
+	 * Method that return the rules created
+	 * 
+	 * @param string_regras array of Strings that have the rules chosen
+	 * @return array of Strings with the rules created
+	 */
 
 	// retorna um array de String com as regras criadas
 	public static String[] saveRegras(String[] string_regras) {
@@ -86,6 +100,15 @@ public class EssentialJanelasMetricasMethods {
 		System.out.println("File has been written");
 		return string_regras;
 	}
+	
+	/**
+	 * Define the models to add the rules to the table and compare the information to the class for verification
+	 * 
+	 * @param table1 JTabel 
+	 * @param table2 JTabel where the rules are added
+	 * @param stringRegras array of Strings
+	 * @param eastPClassTextArea text area
+	 */
 
 	public static void submitClassRule(JTable table1, JTable table2, String[] stringRegras, JTextArea eastPClassTextArea) {
 		// Definir modelos para adicionar regras à tabela 2
@@ -136,6 +159,15 @@ public class EssentialJanelasMetricasMethods {
 			}
 		}
 	}
+	
+	/**
+	 * Define the models to add the rules to the table and compare the information to the method for verification
+	 * 
+	 * @param table1 JTabel
+	 * @param table2 JTabel where the rules are added
+	 * @param stringRegras array of Strings
+	 * @param eastPClassTextArea text area
+	 */
 
 	public static void submitMethodRule(JTable table1, JTable table2, String[] stringRegras, JTextArea eastPMethodTextArea) {
 		// Definir modelos para adicionar regras à tabela 2
@@ -211,6 +243,19 @@ public class EssentialJanelasMetricasMethods {
 		}
 		return excelTClassCol1;
 	}
+	
+	/**
+	 * Writes the code smells that were generated to the comparison table.
+	 * The rows of the tables are defined by the rules and is set the correct value
+	 * 
+	 * @param excelTModel default table model
+	 * @param comparisonTModel default table model
+	 * @param stringRegras array of strings
+	 * @param excelTCol1 int
+	 * @param excelTCol2 int
+	 * @param row int
+	 * @param col2 int
+	 */
 
 	public static void writeGeneratedCodeSmellToComparisonTable(DefaultTableModel excelTModel,
 			DefaultTableModel comparisonTModel, String[] stringRegras, int excelTCol1, int excelTCol2, int row,
@@ -393,6 +438,19 @@ public class EssentialJanelasMetricasMethods {
 			}
 		}
 	}
+	
+	/**
+	 * Class that loads into a file all the rules chosen
+	 * The files .java are all saved in the same list
+	 * 
+	 * @param comboBox1Name comboBox to select the option
+	 * @param comboBox2Sign comboBox to select the option
+	 * @param comboBox3Operator comboBox to select the option
+	 * @param comboBox4Name2 comboBox to select the option
+	 * @param comboBox5Sign2 comboBox to select the option
+	 * @param text_regras text field
+	 * @param text_regras1 text field
+	 */
 
 	public static void loadRegras1(JComboBox<?> comboBox1Name, JComboBox<?> comboBox2Sign, JComboBox<?> comboBox3Operator, 
 			JComboBox<?> comboBox4Name2, JComboBox<?> comboBox5Sign2, JTextField text_regras, JTextField text_regras1) {
@@ -493,6 +551,19 @@ public class EssentialJanelasMetricasMethods {
 			}
 		}
 	}
+	
+	/**
+	 * Class that loads into a file all the rules chosen
+	 * The files .java are all saved in the same list
+	 * 
+	 * @param comboBox1v2Name comboBox to select the option
+	 * @param comboBox2v2Sign comboBox to select the option
+	 * @param comboBox3v2Operator comboBox to select the option
+	 * @param comboBox4v2Name2 comboBox to select the option
+	 * @param comboBox5v2Sign2 comboBox to select the option
+	 * @param text_regrasv2 text field
+	 * @param text_regras1v2 text field
+	 */
 
 	public static void loadRegras2(JComboBox<?> comboBox1v2Name, JComboBox<?> comboBox2v2Sign, JComboBox<?> comboBox3v2Operator, 
 			JComboBox<?> comboBox4v2Name2, JComboBox<?> comboBox5v2Sign2, JTextField text_regrasv2, JTextField text_regras1v2) {
