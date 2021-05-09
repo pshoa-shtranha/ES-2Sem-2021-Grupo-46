@@ -6,8 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -92,7 +90,7 @@ public class GUI {
 		button0.setBackground(Color.WHITE);
 		button0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String defaultCurrentDirectoryPath = "src/";
+				String defaultCurrentDirectoryPath = "metricas/";
 				JFileChooser excelFileChooser = new JFileChooser(defaultCurrentDirectoryPath);
 				int excelChooser = excelFileChooser.showOpenDialog(null);
 				// if import button is clicked
